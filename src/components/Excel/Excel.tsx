@@ -33,11 +33,22 @@ export function Excel<Data extends BaseData>({ labels, data }: Props<Data>) {
     setIsSorted(!isSorted);
   };
 
+  const onClickSearch = (value: string) => {
+    const res = data.filter((obj) => Object.entries(obj).some((item) => {
+      const elem = item[1].toString();
+      return elem.includes(value);
+    }));
+
+    if (res.length) {
+      setSortedData(res);
+    }
+  };
+
   return (
     <main
       className="grid-wrapper"
     >
-      <Search />
+      <Search onClickSearch={onClickSearch} />
       <div className="grid__header">
         <div className="grid__cell">
           <img src={confirmation} alt="check" />

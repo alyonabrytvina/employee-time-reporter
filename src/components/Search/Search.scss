@@ -1,0 +1,29 @@
+.search-wrapper{
+  position: relative;
+}
+
+.search{
+  margin: 20px;
+  border-radius: 7px;
+  width: 300px;
+  height: 30px;
+  background: #242B35;
+  border: 1px solid #3D444E;
+  color: #B6B4C6;
+  padding-left: 30px;
+
+  &__icon{
+    position: absolute;
+    left: 30px;
+    top: 30px;
+  }
+}
+
+.search:focus{
+  outline: none;
+  border: 1px solid #8F7FFF;
+}
+
+.search:hover{
+  border: 1px solid #8F7FFF;
+}

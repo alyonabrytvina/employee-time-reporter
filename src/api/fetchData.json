@@ -1,0 +1,71 @@
+{
+    "neighbours": [{
+    "id": 0,
+    "name": "Alex",
+    "age": 25,
+    "email": "alex@gmail",
+    "phone": 43243242343,
+    "room": 1
+
+},
+{
+"id": 1,
+"name": "Blex",
+"age": 14,
+"email": "alex@gmail",
+"phone": 77525252342,
+"room": 44
+},
+{
+"id": 2,
+"name": "Clex",
+"age": 78,
+"email": "alex@gmail",
+"phone": 3676673366,
+"room": 22
+},
+{
+"id": 3,
+"name": "Dlex",
+"age": 5,
+"email": "alex@gmail",
+"phone": 2676676666,
+"room": 11
+},
+{
+"id": 4,
+"name": "Slex",
+"age": 13,
+"email": "alex@gmail",
+"phone": 3242424234,
+"room": 12
+},
+{
+"id": 5,
+"name": "Xlex",
+"age": 98,
+"email": "alex@gmail",
+"phone": 2333313232,
+"room": 3
+},
+{
+"id": 6,
+"name": "Slex",
+"age": 33,
+"email": "alex@gmail",
+"phone": 233213232,
+"room": 2
+},
+{
+"id": 7,
+"name": "Olex",
+"age": 22,
+"email": "alex@gmail",
+"phone": 43243242342,
+"room": 53
+}
+        ],
+    "columns": {
+        "labels": ["name", "age", "email", "phone", "room"]
+    }
+}

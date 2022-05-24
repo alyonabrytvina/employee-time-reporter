@@ -66,6 +66,6 @@
 }
         ],
     "columns": {
-        "labels": ["name", "age", "email", "phone", "room"]
+        "labels": ["Name", "Age", "Email", "Phone", "Room"]
     }
 }

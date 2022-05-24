@@ -35,7 +35,7 @@ export function Excel<Data extends BaseData>({ labels, data }: Props<Data>) {
 
   const onClickSearch = (value: string) => {
     const res = data.filter((obj) => Object.entries(obj).some((item) => {
-      const elem = item[1].toString();
+      const elem = item[1].toString().toLowerCase();
       return elem.includes(value);
     }));
 
@@ -56,7 +56,7 @@ export function Excel<Data extends BaseData>({ labels, data }: Props<Data>) {
         {labels.map((label) => (
           <div className="grid__cell" key={Math.random()} onClick={() => onSort(label)}>
             <div>{label}</div>
-            <img className="icon" src={sortIcon} alt="sort icon" />
+            <img className="grid__icon" src={sortIcon} alt="sort icon" />
           </div>
         ))}
       </div>

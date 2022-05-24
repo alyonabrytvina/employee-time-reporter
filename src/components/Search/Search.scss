@@ -6,17 +6,11 @@
   margin: 20px;
   border-radius: 7px;
   width: 300px;
-  height: 30px;
+  height: 35px;
   background: #242B35;
   border: 1px solid #3D444E;
   color: #B6B4C6;
   padding-left: 30px;
-
-  &__icon{
-    position: absolute;
-    left: 30px;
-    top: 30px;
-  }
 }
 
 .search:focus{
@@ -26,4 +20,25 @@
 
 .search:hover{
   border: 1px solid #8F7FFF;
+}
+
+.search-icon{
+  position: absolute;
+  left: 30px;
+  top: 30px;
+  cursor: pointer;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  height: 1em;
+  width: 1em;
+  background: url('../../assets/svgs/delete icon.svg') no-repeat 50% 50%;
+  background-size: contain;
+  cursor: pointer;
+}
+
+input[type="search"]:focus::-webkit-search-cancel-button {
+  opacity: 1;
+  pointer-events: all;
 }

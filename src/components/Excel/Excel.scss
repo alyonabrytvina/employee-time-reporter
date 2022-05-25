@@ -24,6 +24,7 @@
   &__header{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     background-color: #2D333D;
     border-radius: 7px;
     margin: 5px 20px;
@@ -38,8 +39,9 @@
     justify-content: space-around;
     min-width: 65px;
     height: 100%;
-    width: 100%;
+    width: 160px;
     position: relative;
+    word-break: break-word;
   }
 
   &__cell:not(:first-child){

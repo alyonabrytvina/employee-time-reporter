@@ -13,17 +13,17 @@ interface Data{
 }
 
 interface Database{
-    neighbours: Data[]
+    tasks: Data[]
     columns: Record<string, string[]>
 }
 
 function App() {
-  const { neighbours, columns: { labels } } = db as unknown as Database;
+  const { tasks, columns: { labels } } = db as unknown as Database;
 
   return (
     <div>
       <Header />
-      <Excel<Data> data={neighbours} labels={labels} />
+      <Excel<Data> data={tasks} labels={labels} />
     </div>
   );
 }

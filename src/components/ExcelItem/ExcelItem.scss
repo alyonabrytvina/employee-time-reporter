@@ -19,8 +19,8 @@
   &__row{
     display: flex;
     flex-direction: row;
-    height: 50px;
-    justify-content: start;
+    height: 80px;
+    justify-content: space-between;
     border-radius: 7px;
     background-color: #242B35;
     margin: 5px 20px;
@@ -28,7 +28,7 @@
     &_selected{
       display: flex;
       flex-direction: row;
-      height: 50px;
+      height: 80px;
       justify-content: start;
       border-radius: 7px;
       margin: 5px 20px;
@@ -51,7 +51,14 @@
     justify-content: center;
     min-width: 65px;
     height: 100%;
-    width: 115px;
+    width: 160px;
+    position: relative;
+
+    &_hide-content{
+      font-size: 12px;
+      color: #8F7FFF;
+      cursor: pointer;
+    }
   }
 
   &__cell:first-child{
@@ -81,4 +88,77 @@ input[type="checkbox"]:checked {
   content: '';
   background-image: url(../../assets/svgs/confirmation.svg);
   border: none;
+}
+
+#tooltip {
+  position: absolute;
+  left: 0;
+  top: 78px;
+  font-size: 12px;
+  z-index: 1;
+  padding-left: 20px;
+}
+
+.tooltip-arrow::after {
+  left: 10%;
+  position: absolute;
+  content:"";
+  top: -7px;
+  margin-left: 20px;
+  border-bottom: 8px solid #353E56;
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+}
+
+.tooltip-arrow:after,
+.tooltip-arrow:before {
+  left: 10%;
+  position: absolute;
+  content:"";
+  top: -7px;
+  margin-left: 20px;
+  border-bottom: 8px solid #353E56;
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+}
+
+.tooltip-arrow:after {
+  top: -7px;
+  border-color: transparent transparent #242B35 transparent;
+  border-width: 8px;
+}
+
+.tooltip-arrow:before {
+  top: -8px;
+  border-color: transparent transparent #353E56 transparent;
+  border-width: 8px;
+}
+
+.tooltip-label{
+  color: #B6B4C6;
+  border: 1px solid #353E56;
+  border-radius: 4px;
+  padding: 3px 12px;
+
+  &__item {
+    display: flex;
+    align-items: start;
+  }
+
+  &__icon{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin-top: 6px;
+  }
+}
+
+.tooltip-label:nth-child(even) {
+  background-color: #242B35;
+}
+
+
+.tooltip-label:nth-child(odd){
+  background-color: #1E242F;
 }

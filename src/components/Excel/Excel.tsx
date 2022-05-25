@@ -34,9 +34,11 @@ export function Excel<Data extends BaseData>({ labels, data }: Props<Data>) {
   };
 
   const onClickSearch = (value: string) => {
-    const res = data.filter((obj) => Object.entries(obj).some((item) => {
-      const elem = item[1].toString().toLowerCase();
-      return elem.includes(value);
+    const res = data.filter((obj) => Object.entries(obj).some(([keys, values]) => {
+      if (values !== null) {
+        const elem = values.toString().toLowerCase();
+        return elem.includes(value);
+      }
     }));
 
     if (res.length) {
@@ -53,12 +55,17 @@ export function Excel<Data extends BaseData>({ labels, data }: Props<Data>) {
         <div className="grid__cell">
           <img src={confirmation} alt="check" />
         </div>
-        {labels.map((label) => (
-          <div className="grid__cell" key={Math.random()} onClick={() => onSort(label)}>
-            <div>{label}</div>
-            <img className="grid__icon" src={sortIcon} alt="sort icon" />
-          </div>
-        ))}
+        {labels.map((label) => {
+          const keyHeader = Object.values(label);
+          const labelValue = Object.keys(label).join('');
+
+          return (
+            <div className="grid__cell" key={Math.random()} onClick={() => onSort(labelValue)}>
+              <div>{keyHeader}</div>
+              <img className="grid__icon" src={sortIcon} alt="sort icon" />
+            </div>
+          );
+        })}
       </div>
       {sortedData.map((item: Data) => <ExcelItem<Data> key={item.id} data={item} />)}
     </main>

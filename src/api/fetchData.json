@@ -1,87 +1,85 @@
 {
     "tasks": [{
-        "taskName": "Subdomain home pages mockup",
-        "developer": "Nadezhda Lazurenko",
-        "workType": "Graphic Design",
+        "taskName": "Create endpoint",
+        "developers": "Aaron Thomas",
+        "workType": "Back-End",
         "status": "Non completed",
         "estimation": 0.0,
         "totalTimeSpent": 756.70,
-        "MyTimeSpentByPeriod": 75.00,
+        "myTimeSpentByPeriod": 75.00,
         "efficiency": null,
         "id": 0
     },
 {
-            "taskName": "Search page mockup",
-            "developer": ["Nadezhda Lazurenko", "Kent Peacock","Kent Peacock","Kent Peacock","Kent Peacock"],
-            "workType": ["Programming", "Meetings", "Programming", "Meetings"," Meetings"],
-            "status": "Сompleted",
+            "taskName": "Landing",
+            "developers": ["Darlene Robertson", "Emmett Wise", "Lukas Rodriquez", "Sean Mann", "Alec Gates"],
+            "workType": ["Back-End", "Design", "Front-End","Meetings"],
+            "status": "Completed",
             "estimation": 0.0,
             "totalTimeSpent": 232.17,
-            "MyTimeSpentByPeriod": 23.00,
+            "myTimeSpentByPeriod": 23.00,
             "efficiency": "100%",
             "id": 1
 },
 {
             "taskName": "Search page mockup",
-            "developer": ["Nadezhda Lazurenko", "Kent Peacock","Kent Peacock","Kent Peacock","Kent Peacock","Kent Peacock","Kent Peacock","Kent Peacock"],
-            "workType": ["Programming", "Meetings", "Programming", "Meetings"," Meetings"],
-            "status": "Сompleted",
+            "developers": ["Nadezhda Lazurenko", "Kent Peacock","Kent Peacock","Kent Peacock","Kent Peacock","Kent Peacock","Kent Peacock","Kent Peacock"],
+            "workType": "Front-End",
+            "status": "Completed",
             "estimation": 0.0,
             "totalTimeSpent": 232.17,
-            "MyTimeSpentByPeriod": 23.00,
+            "myTimeSpentByPeriod": 23.00,
             "efficiency": "100%",
             "id": 2
 },
 {
             "taskName": "Two levels of the menu mockup",
-            "developer": "Nadezhda Lazurenko",
-            "workType": "Graphic Design",
+            "developers": "Jerome Bell",
+            "workType": "Design",
             "status": "Non completed",
             "estimation": 0.0,
             "totalTimeSpent": 1567.60,
-            "MyTimeSpentByPeriod": 15.00,
+            "myTimeSpentByPeriod": 15.00,
             "efficiency": null,
             "id": 3
 },
 {
     "taskName": "Edit pictures",
-    "developer": [
+    "developers": [
         "Nadezhda Lazurenko", "Kent Peacock"],
-    "workType": [
-        "Graphic Design"
-    ],
+    "workType": "Front-End",
     "status": "Non completed",
     "estimation": 0.0,
     "totalTimeSpent": 678.20,
-    "MyTimeSpentByPeriod": 67.00,
+    "myTimeSpentByPeriod": 67.00,
     "efficiency": null,
     "id": 4
 },
         {
             "taskName": "Subdomain home pages mockup",
-            "developer": "Nadezhda Lazurenko",
-            "workType": "Graphic Design",
+            "developers": "Ralph Edwards",
+            "workType": "Front-End",
             "status": "Non completed",
             "estimation": 0.0,
             "totalTimeSpent": 756.70,
-            "MyTimeSpentByPeriod": 75.00,
+            "myTimeSpentByPeriod": 75.00,
             "efficiency": null,
             "id": 5
 },
 {
-    "taskName": "Landing page mockup",
-    "developer": "Nadezhda Lazurenko",
-    "workType": "Graphic Design",
+    "taskName": "Meeting",
+    "developers": ["Kotelnytskyi Yevhen", "Plakhotya Oksana", "Shymko Roman"],
+    "workType": "PM’s",
     "status": "Non completed",
     "estimation": 0.0,
     "totalTimeSpent": 345.60,
-    "MyTimeSpentByPeriod": 45.00,
+    "myTimeSpentByPeriod": 45.00,
     "efficiency": null,
     "id": 6
 },
 {
     "taskName": "Search page mockup",
-    "developer": [
+    "developers": [
         "Nadezhda Lazurenko", "Kent Peacock",
         "Kent Peacock","Nadezhda Lazurenko", "Kent Peacock","Kent Peacock","Nadezhda Lazurenko", "Kent Peacock","Kent Peacock","Nadezhda Lazurenko", "Kent Peacock","Kent Peacock"
     ],
@@ -89,21 +87,21 @@
         "Programming", "Meetings", "Programming", "Meetings",
         " Meetings"
     ],
-    "status": "Сompleted",
+    "status": "Completed",
     "estimation": 0.0,
     "totalTimeSpent": 232.17,
-    "MyTimeSpentByPeriod": 23.00,
+    "myTimeSpentByPeriod": 23.00,
     "efficiency": "100%",
     "id": 7
 },
         {
             "taskName": "Landing page mockup",
-            "developer": "Nadezhda Lazurenko",
-            "workType": "Graphic Design",
+            "developers": "Nadezhda Lazurenko",
+            "workType": "Back-End",
             "status": "Non completed",
             "estimation": 0.0,
             "totalTimeSpent": 345.60,
-            "MyTimeSpentByPeriod": 45.00,
+            "myTimeSpentByPeriod": 45.00,
             "efficiency": null,
             "id": 8
         }
@@ -134,5 +132,30 @@
           {
             "efficiency": "Efficiency"
           }]
+    },
+  "status": ["All status", "Completed", "Non completed"],
+  "developers": {
+    "allPeople": {
+      "design": ["Jerome Bell", "Arlene McCoy", "Nadezhda Lazurenko"],
+      "frontEnd": ["Theresa Webb", "Ralph Edwards", "Darlene Robertson", "Emmett Wise", "Lukas Rodriquez", "Sean Mann", "Alec Gates"],
+      "backEnd": ["Aaron Thomas", "George Cooke", "John Dawson", "Kyle Jones", "Ellis Lane", "Daxton Morgan"],
+      "pms": ["Kotelnytskyi Yevhen", "Plakhotya Oksana", "Shymko Roman"]
     }
+  },
+  "select": {
+    "labelsDev": [
+      {
+        "design": "Design"
+      },
+      {
+        "frontEnd": "Front-End"
+      },
+      {
+        "backEnd": "Back-End"
+      },
+      {
+        "pms": "PM’s"
+      }
+    ]
+  }
 }

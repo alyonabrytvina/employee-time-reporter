@@ -1,29 +1,47 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Header } from './Header/Header';
 import { Excel } from './components/Excel/Excel';
 import db from './api/fetchData.json';
 
-interface Data{
-    age: string
-    email: string
-    name: string
-    phone: string
-    room: string
+export interface ItemRow{
+    taskName: string,
+    developers: string | string[],
+    workType: string | string[],
+    status: string,
+    estimation: number,
+    totalTimeSpent: number,
+    myTimeSpentByPeriod: number,
+    efficiency: number,
     id: number
 }
 
+interface People{
+    allPeople: Record<string, string[]>
+}
+
 interface Database{
-    tasks: Data[]
+    tasks: ItemRow[]
     columns: Record<string, string[]>
+    status: string[]
+    select: Record<string, string[]>
+    developers: People
 }
 
 function App() {
-  const { tasks, columns: { labels } } = db as unknown as Database;
+  const {
+    tasks, columns: { labels }, status, developers: { allPeople }, select: { labelsDev },
+  } = db as unknown as Database;
 
   return (
     <div>
       <Header />
-      <Excel<Data> data={tasks} labels={labels} />
+      <Excel<ItemRow>
+        tasks={tasks}
+        labelsCell={labels}
+        status={status}
+        dev={allPeople}
+        labelsDev={labelsDev}
+      />
     </div>
   );
 }

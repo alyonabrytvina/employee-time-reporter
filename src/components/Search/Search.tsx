@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './Search.scss';
 import searchIcon from '../../assets/svgs/search icon.svg';
-import deleteIcon from '../../assets/svgs/delete icon.svg';
+import { useDataContext } from '../../context';
 
-interface Props{
-  onClickSearch: (value: string) => void
-}
-
-export function Search({ onClickSearch }: Props) {
+export function Search() {
+  const { onClickSearch } = useDataContext();
   const [searchValue, setSearchValue] = useState<string>('');
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {

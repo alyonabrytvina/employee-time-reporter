@@ -1,0 +1,119 @@
+.select-wrapper{
+  position: relative;
+  width: 200px;
+  margin: 20px 0 20px 20px;
+  height: 35px;
+}
+
+.select{
+  border-radius: 7px;
+  background: #242B35;
+  border: 1px solid #3D444E;
+  color: transparent;
+  text-shadow: 0 0 0 #B6B4C6;
+  padding-left: 10px;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  outline:none;
+  display: flex;
+  align-items: center;
+
+  &__arrow{
+    position: absolute;
+    top: 7px;
+    right: 0;
+    cursor: pointer;
+  }
+}
+
+.select:focus{
+  outline: none;
+  border: 1px solid #8F7FFF;
+}
+
+.select:hover{
+  border: 1px solid #8F7FFF;
+  outline:none;
+}
+
+#tooltip-select {
+  position: absolute;
+  left: 0;
+  top: 50px;
+  font-size: 12px;
+  width: 214px;
+  z-index: 1;
+}
+
+.tooltip-select-arrow::after {
+  left: 10%;
+  position: absolute;
+  content:"";
+  top: -7px;
+  margin-left: 20px;
+  border-bottom: 8px solid #353E56;
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+}
+
+.tooltip-select-arrow:after,
+.tooltip-select-arrow:before {
+  left: 10%;
+  position: absolute;
+  content:"";
+  top: -7px;
+  margin-left: 20px;
+  border-bottom: 8px solid #353E56;
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+}
+
+.tooltip-select-arrow:after {
+  top: -7px;
+  border-color: transparent transparent #242B35 transparent;
+  border-width: 8px;
+}
+
+.tooltip-select-arrow:before {
+  top: -8px;
+  border-color: transparent transparent #353E56 transparent;
+  border-width: 8px;
+}
+
+.tooltip-select-label {
+  color: #B6B4C6;
+  border: 1px solid #353E56;
+  border-radius: 4px;
+
+  &__item {
+    display: flex;
+    align-items: start;
+    cursor: pointer;
+    padding: 12px;
+  }
+
+
+  &__item:hover {
+    display: flex;
+    align-items: start;
+    cursor: pointer;
+    background: rgba(124, 128, 134, 0.15);
+  }
+
+  &__icon{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin-top: 6px;
+  }
+}
+
+.tooltip-select-label:nth-child(even) {
+  background-color: #242B35;
+}
+
+.tooltip-select-label:nth-child(odd){
+  background-color: #1E242F;
+}

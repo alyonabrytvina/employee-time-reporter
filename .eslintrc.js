@@ -31,5 +31,7 @@ module.exports = {
     'max-len': 'off',
     'array-callback-return': 'off',
     'consistent-return': 'off',
+    'no-nested-ternary': 'off',
+    'no-param-reassign': 'off',
   },
 };

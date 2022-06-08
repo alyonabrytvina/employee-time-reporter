@@ -33,5 +33,7 @@ module.exports = {
     'consistent-return': 'off',
     'no-nested-ternary': 'off',
     'no-param-reassign': 'off',
+    'no-shadow': 'off',
+    'react/button-has-type': 'off',
   },
 };

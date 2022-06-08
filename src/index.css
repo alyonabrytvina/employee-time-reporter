@@ -1,8 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #171E28;
@@ -12,4 +12,29 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  background-color: #242B35;
+  font: inherit;
+  color: #B6B4C6;
+  min-width: 16px;
+  height: 16px;
+  border: 1.5px solid #B6B4C6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+input[type="checkbox"]:checked {
+  content: '';
+  background-image: url(assets/svgs/confirmation.svg);
+  background-repeat: no-repeat;
+  padding-right: 16px;
+  min-width: 16px;
+  height: 16px;
+  border: none;
 }

@@ -32,7 +32,7 @@ export function SelectStatus() {
         <img src={isOpen ? dropdown : arrow} alt="arrow" />
       </div>
       {isOpen ? (
-        <div id="tooltip-select" className="left">
+        <div id="tooltip-select">
           <div className="tooltip-select-arrow" />
           <div className="tooltip-select-label">
             {status.map((option) => (

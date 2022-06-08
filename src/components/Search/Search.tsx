@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import './Search.scss';
 import searchIcon from '../../assets/svgs/search icon.svg';
 import { useDataContext } from '../../context';

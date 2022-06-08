@@ -24,24 +24,26 @@
   &__header{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    //justify-content: space-between;
     background-color: #2D333D;
     border-radius: 7px;
     margin: 5px 20px;
     font-weight: 600;
     color: #FFFFFF;
-    height: 50px;
+    height: 70px;
   }
 
   &__cell{
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    //justify-content: space-between;
     min-width: 65px;
     height: 100%;
-    width: 160px;
+    width: 140px;
     position: relative;
     word-break: break-word;
+    text-align: end;
+    margin-left: 15px;
   }
 
   &__cell:not(:first-child){
@@ -96,3 +98,8 @@
   height: 17px;
 }
 
+.icon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

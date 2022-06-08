@@ -1,60 +1,81 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import arrow from '../../assets/svgs/arrow.svg';
 import dropdown from '../../assets/svgs/dropdown.svg';
 import './SelectDev.scss';
 import { useDataContext } from '../../context';
 
+export interface Developers{
+  design: string[]
+  frontend: string[]
+  backend: string[]
+  pms: string[]
+}
+
 export function SelectDev() {
-  const { onChangeSelectDev, labelsDev, dev } = useDataContext();
+  const {
+    onChangeSelectDev, dev, selectCategories,
+    categoriesValues, categoriesLabels,
+  } = useDataContext();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [devCategory, setDevCategory] = useState<string[]>([]);
-  const [isChecked, setIsChecked] = useState<boolean>(true);
+  const [categories, setCategories] = useState<string[]>(categoriesValues);
+  const [developers, setDevelopers] = useState<Record<string, string[]>>(dev);
 
-  const [isSubCatChecked, setIsSubCatChecked] = useState<boolean>(true);
-  const [subDevCategory, setSubDevCategory] = useState<string[]>([]);
-
-  const [devCategoryLength, setDevCategoryLength] = useState<number>(0);
-
-  useEffect(() => {
-    const devArray = labelsDev.map((label) => Object.values(label).map((value) => setDevCategory(((prevState) => [...prevState, value]))));
-    Object.values(dev).forEach((developer) => setSubDevCategory((prevState) => [...prevState, ...developer]));
-    setDevCategoryLength(devArray.length);
-  }, []);
-
-  useEffect(() => {
-    onChangeSelectDev(devCategory, subDevCategory);
-  }, [devCategory, subDevCategory]);
+  const [initialCategoriesLength, setInitialCategoriesLength] = useState<number>(0);
+  const [optionsNames, setOptionsNames] = useState<string[]>(categoriesLabels);
 
   const onClickOpen = () => setIsOpen(!isOpen);
 
-  const onClickSubCat = (item: string) => {
-    setIsSubCatChecked(!isSubCatChecked);
-
-    if (subDevCategory.includes(item)) {
-      setSubDevCategory((prevState) => prevState.filter((state) => state !== item));
+  const onClickSubCat = (key: string, item: string) => {
+    if (developers[key as keyof Developers]?.includes(item)) {
+      setDevelopers((prevState) => ({
+        ...prevState,
+        [key]: prevState[key as keyof Developers].filter((state: string) => state !== item),
+      }));
     } else {
-      setSubDevCategory((prevState) => [...prevState, item]);
+      setDevelopers((prevState) => ({
+        ...prevState,
+        [key]: [...prevState[key as keyof Developers], item],
+      }));
     }
   };
 
   useEffect(() => {
-    if (!isChecked) {
-      setSubDevCategory([]);
-      setDevCategory([]);
-    }
-  }, [isChecked]);
+    const values = Object.values(developers).reduce((total, currentValue) => (total).concat(currentValue), []);
+    onChangeSelectDev(values);
+  }, [categories, developers]);
 
-  const onClickOption = (value: string) => {
-    // // console.log(devCategoryLength, devCategory.length);
-    // if (devCategoryLength !== devCategory.length) {
-    //   setDevCategory((prevState) => prevState.filter((state) => value !== 'All people'));
-    // }
+  useEffect(() => {
+    setInitialCategoriesLength(categoriesValues.length);
+  }, []);
 
-    if (devCategory.includes(value)) {
-      setDevCategory((prevState) => prevState.filter((state) => state !== value));
+  const onClickOption = (key: string) => {
+    if (categories.includes(key)) {
+      setCategories((prevState) => prevState.filter((state) => state !== key));
+
+      setDevelopers((prevState) => ({
+        ...prevState,
+        [key]: [],
+      }));
+
+      selectCategories.filter((category) => {
+        if (category.value === key) {
+          return setOptionsNames((prevState) => prevState?.filter((state) => state !== category.label));
+        }
+      });
     } else {
-      setDevCategory((prevState) => [...prevState, value]);
+      setCategories((prevState) => [...prevState, key]);
+
+      selectCategories.filter((category) => {
+        if (category.value === key) {
+          return setOptionsNames((prevState) => [...prevState, category.label]);
+        }
+      });
+
+      setDevelopers((prevState) => ({
+        ...prevState,
+        [key]: dev[key as keyof Developers],
+      }));
     }
   };
 
@@ -66,16 +87,16 @@ export function SelectDev() {
         className="select-dev"
         onClick={onClickOpen}
       >
-        {devCategoryLength === devCategory.length ? 'All people' : [...devCategory].join(', ')}
+        {categories?.length === initialCategoriesLength ? 'All people' : [...optionsNames].join(', ')}
       </div>
       <div className="select-dev__arrow">
         <img src={isOpen ? dropdown : arrow} alt="arrow" />
       </div>
-      {isOpen ? (
+      {isOpen && (
         <div id="tooltip-select-dev" className="left">
           <div className="tooltip-select-dev-arrow" />
           <div className="tooltip-select-dev-label">
-            {labelsDev.map((category) => Object.entries(category).map(([key, value]) => (
+            {Object.entries(dev).map(([key, valueArr]) => (
               <div
                 key={Math.random()}
                 className="tooltip-select-dev-label__item-wrapper"
@@ -87,31 +108,42 @@ export function SelectDev() {
                     alignItems: 'center',
                   }}
                   >
-                    <input type="checkbox" onChange={() => onClickOption(value)} checked={devCategory.includes(value) && isChecked} />
-                    <span>{value}</span>
+                    <input
+                      type="checkbox"
+                      onChange={() => onClickOption(key)}
+                      checked={!!developers[key as keyof Developers]?.length}
+                    />
+                    <span>
+                      {selectCategories.map((category) => {
+                        if (category.value === key) {
+                          return category.label;
+                        }
+                      })}
+                    </span>
                   </div>
-                  {devCategory.includes(value) ? (
-                    <div className="tooltip-select-dev-label__li">
-                      {dev[key] !== undefined && dev[key].map((item) => (
-                        <div
-                          key={Math.random()}
-                          style={{
-                            display: 'flex',
-                          }}
-                        >
-                          <input type="checkbox" onChange={() => onClickSubCat(item)} checked={subDevCategory.includes(item) && isChecked} />
-                          <span>{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  ) : ''}
-                  <br />
+                  <div className="tooltip-select-dev-label__li">
+                    {valueArr.map((item: string) => (
+                      <div
+                        key={Math.random()}
+                        style={{
+                          display: 'flex',
+                        }}
+                      >
+                        <input
+                          type="checkbox"
+                          onChange={() => onClickSubCat(key, item)}
+                          checked={developers[key as keyof Developers]?.includes(item)}
+                        />
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-            )))}
+            ))}
           </div>
         </div>
-      ) : ''}
+      )}
     </div>
   );
 }

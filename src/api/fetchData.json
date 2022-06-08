@@ -1,7 +1,7 @@
 {
-    "tasks": [{
+    "data": [{
         "taskName": "Create endpoint",
-        "developers": "Aaron Thomas",
+        "developers": ["Aaron Thomas"],
         "workType": "Back-End",
         "status": "Non completed",
         "estimation": 0.0,
@@ -10,20 +10,20 @@
         "efficiency": null,
         "id": 0
     },
-{
-            "taskName": "Landing",
-            "developers": ["Darlene Robertson", "Emmett Wise", "Lukas Rodriquez", "Sean Mann", "Alec Gates"],
-            "workType": ["Back-End", "Design", "Front-End","Meetings"],
-            "status": "Completed",
+    {
+        "taskName": "Landing",
+        "developers": ["Jerome Bell", "Arlene McCoy", "Kotelnytskyi Yevhen", "Ellis Lane", "Daxton Morgan"],
+        "workType": ["Back-End", "Design", "Front-End","Meetings"],
+        "status": "Completed",
             "estimation": 0.0,
             "totalTimeSpent": 232.17,
             "myTimeSpentByPeriod": 23.00,
             "efficiency": "100%",
             "id": 1
-},
-{
+    },
+    {
             "taskName": "Search page mockup",
-            "developers": ["Nadezhda Lazurenko", "Kent Peacock","Kent Peacock","Kent Peacock","Kent Peacock","Kent Peacock","Kent Peacock","Kent Peacock"],
+            "developers": ["Ralph Edwards", "Darlene Robertson", "Emmett Wise", "Lukas Rodriquez"],
             "workType": "Front-End",
             "status": "Completed",
             "estimation": 0.0,
@@ -31,10 +31,10 @@
             "myTimeSpentByPeriod": 23.00,
             "efficiency": "100%",
             "id": 2
-},
-{
+    },
+    {
             "taskName": "Two levels of the menu mockup",
-            "developers": "Jerome Bell",
+            "developers": ["Nadezhda Lazurenko"],
             "workType": "Design",
             "status": "Non completed",
             "estimation": 0.0,
@@ -42,22 +42,23 @@
             "myTimeSpentByPeriod": 15.00,
             "efficiency": null,
             "id": 3
-},
-{
-    "taskName": "Edit pictures",
-    "developers": [
-        "Nadezhda Lazurenko", "Kent Peacock"],
-    "workType": "Front-End",
-    "status": "Non completed",
-    "estimation": 0.0,
-    "totalTimeSpent": 678.20,
-    "myTimeSpentByPeriod": 67.00,
-    "efficiency": null,
-    "id": 4
-},
-        {
+    },
+    {
+            "taskName": "Edit pictures",
+            "developers": [
+              "Emmett Wise", "Lukas Rodriquez"
+            ],
+            "workType": "Front-End",
+            "status": "Non completed",
+            "estimation": 0.0,
+            "totalTimeSpent": 678.20,
+            "myTimeSpentByPeriod": 67.00,
+            "efficiency": null,
+            "id": 4
+    },
+    {
             "taskName": "Subdomain home pages mockup",
-            "developers": "Ralph Edwards",
+            "developers": ["Sean Mann"],
             "workType": "Front-End",
             "status": "Non completed",
             "estimation": 0.0,
@@ -65,8 +66,8 @@
             "myTimeSpentByPeriod": 75.00,
             "efficiency": null,
             "id": 5
-},
-{
+    },
+    {
     "taskName": "Meeting",
     "developers": ["Kotelnytskyi Yevhen", "Plakhotya Oksana", "Shymko Roman"],
     "workType": "PM’s",
@@ -76,16 +77,14 @@
     "myTimeSpentByPeriod": 45.00,
     "efficiency": null,
     "id": 6
-},
-{
+    },
+    {
     "taskName": "Search page mockup",
     "developers": [
-        "Nadezhda Lazurenko", "Kent Peacock",
-        "Kent Peacock","Nadezhda Lazurenko", "Kent Peacock","Kent Peacock","Nadezhda Lazurenko", "Kent Peacock","Kent Peacock","Nadezhda Lazurenko", "Kent Peacock","Kent Peacock"
+      "Plakhotya Oksana", "Emmett Wise", "Lukas Rodriquez", "Sean Mann", "Alec Gates"
     ],
     "workType": [
-        "Programming", "Meetings", "Programming", "Meetings",
-        " Meetings"
+        "Front-End", "Meetings"
     ],
     "status": "Completed",
     "estimation": 0.0,
@@ -96,7 +95,7 @@
 },
         {
             "taskName": "Landing page mockup",
-            "developers": "Nadezhda Lazurenko",
+            "developers": ["Aaron Thomas"],
             "workType": "Back-End",
             "status": "Non completed",
             "estimation": 0.0,
@@ -104,58 +103,611 @@
             "myTimeSpentByPeriod": 45.00,
             "efficiency": null,
             "id": 8
-        }
+        },
+      {
+        "taskName": "Create endpoint",
+        "developers": ["Aaron Thomas"],
+        "workType": "Back-End",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 756.70,
+        "myTimeSpentByPeriod": 75.00,
+        "efficiency": null,
+        "id": 9
+      },
+      {
+        "taskName": "Landing",
+        "developers": ["Jerome Bell", "Arlene McCoy", "Kotelnytskyi Yevhen", "Ellis Lane", "Daxton Morgan"],
+        "workType": ["Back-End", "Design", "Front-End","Meetings"],
+        "status": "Completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 232.17,
+        "myTimeSpentByPeriod": 23.00,
+        "efficiency": "100%",
+        "id": 10
+      },
+      {
+        "taskName": "Search page mockup",
+        "developers": ["Ralph Edwards", "Darlene Robertson", "Emmett Wise", "Lukas Rodriquez"],
+        "workType": "Front-End",
+        "status": "Completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 232.17,
+        "myTimeSpentByPeriod": 23.00,
+        "efficiency": "100%",
+        "id": 11
+      },
+      {
+        "taskName": "Two levels of the menu mockup",
+        "developers": ["Nadezhda Lazurenko"],
+        "workType": "Design",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 1567.60,
+        "myTimeSpentByPeriod": 15.00,
+        "efficiency": null,
+        "id": 12
+      },
+      {
+        "taskName": "Edit pictures",
+        "developers": [
+          "Emmett Wise", "Lukas Rodriquez"
+        ],
+        "workType": "Front-End",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 678.20,
+        "myTimeSpentByPeriod": 67.00,
+        "efficiency": null,
+        "id": 888
+      },
+      {
+        "taskName": "Subdomain home pages mockup",
+        "developers": ["Sean Mann"],
+        "workType": "Front-End",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 756.70,
+        "myTimeSpentByPeriod": 75.00,
+        "efficiency": null,
+        "id": 13
+      },
+      {
+        "taskName": "Meeting",
+        "developers": ["Kotelnytskyi Yevhen", "Plakhotya Oksana", "Shymko Roman"],
+        "workType": "PM’s",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 345.60,
+        "myTimeSpentByPeriod": 45.00,
+        "efficiency": null,
+        "id": 14
+      },
+      {
+        "taskName": "Search page mockup",
+        "developers": [
+          "Plakhotya Oksana", "Emmett Wise", "Lukas Rodriquez", "Sean Mann", "Alec Gates"
+        ],
+        "workType": [
+          "Front-End", "Meetings"
+        ],
+        "status": "Completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 232.17,
+        "myTimeSpentByPeriod": 23.00,
+        "efficiency": "100%",
+        "id": 15
+      },
+      {
+        "taskName": "Landing page mockup",
+        "developers": ["Aaron Thomas"],
+        "workType": "Back-End",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 345.60,
+        "myTimeSpentByPeriod": 45.00,
+        "efficiency": null,
+        "id": 16
+      },
+      {
+        "taskName": "Create endpoint",
+        "developers": ["Aaron Thomas"],
+        "workType": "Back-End",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 756.70,
+        "myTimeSpentByPeriod": 75.00,
+        "efficiency": null,
+        "id": 17
+      },
+      {
+        "taskName": "Landing",
+        "developers": ["Jerome Bell", "Arlene McCoy", "Kotelnytskyi Yevhen", "Ellis Lane", "Daxton Morgan"],
+        "workType": ["Back-End", "Design", "Front-End","Meetings"],
+        "status": "Completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 232.17,
+        "myTimeSpentByPeriod": 23.00,
+        "efficiency": "100%",
+        "id": 18
+      },
+      {
+        "taskName": "Search page mockup",
+        "developers": ["Ralph Edwards", "Darlene Robertson", "Emmett Wise", "Lukas Rodriquez"],
+        "workType": "Front-End",
+        "status": "Completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 232.17,
+        "myTimeSpentByPeriod": 23.00,
+        "efficiency": "100%",
+        "id": 19
+      },
+      {
+        "taskName": "Two levels of the menu mockup",
+        "developers": ["Nadezhda Lazurenko"],
+        "workType": "Design",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 1567.60,
+        "myTimeSpentByPeriod": 15.00,
+        "efficiency": null,
+        "id": 20
+      },
+      {
+        "taskName": "Edit pictures",
+        "developers": [
+          "Emmett Wise", "Lukas Rodriquez"
+        ],
+        "workType": "Front-End",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 678.20,
+        "myTimeSpentByPeriod": 67.00,
+        "efficiency": null,
+        "id": 21
+      },
+      {
+        "taskName": "Subdomain home pages mockup",
+        "developers": ["Sean Mann"],
+        "workType": "Front-End",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 756.70,
+        "myTimeSpentByPeriod": 75.00,
+        "efficiency": null,
+        "id": 22
+      },
+      {
+        "taskName": "Meeting",
+        "developers": ["Kotelnytskyi Yevhen", "Plakhotya Oksana", "Shymko Roman"],
+        "workType": "PM’s",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 345.60,
+        "myTimeSpentByPeriod": 45.00,
+        "efficiency": null,
+        "id": 23
+      },
+      {
+        "taskName": "Search page mockup",
+        "developers": [
+          "Plakhotya Oksana", "Emmett Wise", "Lukas Rodriquez", "Sean Mann", "Alec Gates"
+        ],
+        "workType": [
+          "Front-End", "Meetings"
+        ],
+        "status": "Completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 232.17,
+        "myTimeSpentByPeriod": 23.00,
+        "efficiency": "100%",
+        "id": 24
+      },
+      {
+        "taskName": "Landing page mockup",
+        "developers": ["Aaron Thomas"],
+        "workType": "Back-End",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 345.60,
+        "myTimeSpentByPeriod": 45.00,
+        "efficiency": null,
+        "id": 25
+      },
+      {
+        "taskName": "Create endpoint",
+        "developers": ["Aaron Thomas"],
+        "workType": "Back-End",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 756.70,
+        "myTimeSpentByPeriod": 75.00,
+        "efficiency": null,
+        "id": 26
+      },
+      {
+        "taskName": "Landing",
+        "developers": ["Jerome Bell", "Arlene McCoy", "Kotelnytskyi Yevhen", "Ellis Lane", "Daxton Morgan"],
+        "workType": ["Back-End", "Design", "Front-End","Meetings"],
+        "status": "Completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 232.17,
+        "myTimeSpentByPeriod": 23.00,
+        "efficiency": "100%",
+        "id": 27
+      },
+      {
+        "taskName": "Search page mockup",
+        "developers": ["Ralph Edwards", "Darlene Robertson", "Emmett Wise", "Lukas Rodriquez"],
+        "workType": "Front-End",
+        "status": "Completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 232.17,
+        "myTimeSpentByPeriod": 23.00,
+        "efficiency": "100%",
+        "id": 28
+      },
+      {
+        "taskName": "Two levels of the menu mockup",
+        "developers": ["Nadezhda Lazurenko"],
+        "workType": "Design",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 1567.60,
+        "myTimeSpentByPeriod": 15.00,
+        "efficiency": null,
+        "id": 29
+      },
+      {
+        "taskName": "Edit pictures",
+        "developers": [
+          "Emmett Wise", "Lukas Rodriquez"
+        ],
+        "workType": "Front-End",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 678.20,
+        "myTimeSpentByPeriod": 67.00,
+        "efficiency": null,
+        "id": 30
+      },
+      {
+        "taskName": "Subdomain home pages mockup",
+        "developers": ["Sean Mann"],
+        "workType": "Front-End",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 756.70,
+        "myTimeSpentByPeriod": 75.00,
+        "efficiency": null,
+        "id": 31
+      },
+      {
+        "taskName": "Meeting",
+        "developers": ["Kotelnytskyi Yevhen", "Plakhotya Oksana", "Shymko Roman"],
+        "workType": "PM’s",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 345.60,
+        "myTimeSpentByPeriod": 45.00,
+        "efficiency": null,
+        "id": 32
+      },
+      {
+        "taskName": "Search page mockup",
+        "developers": [
+          "Plakhotya Oksana", "Emmett Wise", "Lukas Rodriquez", "Sean Mann", "Alec Gates"
+        ],
+        "workType": [
+          "Front-End", "Meetings"
+        ],
+        "status": "Completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 232.17,
+        "myTimeSpentByPeriod": 23.00,
+        "efficiency": "100%",
+        "id": 33
+      },
+      {
+        "taskName": "Landing page mockup",
+        "developers": ["Aaron Thomas"],
+        "workType": "Back-End",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 345.60,
+        "myTimeSpentByPeriod": 45.00,
+        "efficiency": null,
+        "id": 34
+      },
+      {
+        "taskName": "Create endpoint",
+        "developers": ["Aaron Thomas"],
+        "workType": "Back-End",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 756.70,
+        "myTimeSpentByPeriod": 75.00,
+        "efficiency": null,
+        "id": 35
+      },
+      {
+        "taskName": "Landing",
+        "developers": ["Jerome Bell", "Arlene McCoy", "Kotelnytskyi Yevhen", "Ellis Lane", "Daxton Morgan"],
+        "workType": ["Back-End", "Design", "Front-End","Meetings"],
+        "status": "Completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 232.17,
+        "myTimeSpentByPeriod": 23.00,
+        "efficiency": "100%",
+        "id": 36
+      },
+      {
+        "taskName": "Search page mockup",
+        "developers": ["Ralph Edwards", "Darlene Robertson", "Emmett Wise", "Lukas Rodriquez"],
+        "workType": "Front-End",
+        "status": "Completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 232.17,
+        "myTimeSpentByPeriod": 23.00,
+        "efficiency": "100%",
+        "id": 37
+      },
+      {
+        "taskName": "Two levels of the menu mockup",
+        "developers": ["Nadezhda Lazurenko"],
+        "workType": "Design",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 1567.60,
+        "myTimeSpentByPeriod": 15.00,
+        "efficiency": null,
+        "id": 38
+      },
+      {
+        "taskName": "Edit pictures",
+        "developers": [
+          "Emmett Wise", "Lukas Rodriquez"
+        ],
+        "workType": "Front-End",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 678.20,
+        "myTimeSpentByPeriod": 67.00,
+        "efficiency": null,
+        "id": 39
+      },
+      {
+        "taskName": "Subdomain home pages mockup",
+        "developers": ["Sean Mann"],
+        "workType": "Front-End",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 756.70,
+        "myTimeSpentByPeriod": 75.00,
+        "efficiency": null,
+        "id": 40
+      },
+      {
+        "taskName": "Meeting",
+        "developers": ["Kotelnytskyi Yevhen", "Plakhotya Oksana", "Shymko Roman"],
+        "workType": "PM’s",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 345.60,
+        "myTimeSpentByPeriod": 45.00,
+        "efficiency": null,
+        "id": 41
+      },
+      {
+        "taskName": "Search page mockup",
+        "developers": [
+          "Plakhotya Oksana", "Emmett Wise", "Lukas Rodriquez", "Sean Mann", "Alec Gates"
+        ],
+        "workType": [
+          "Front-End", "Meetings"
+        ],
+        "status": "Completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 232.17,
+        "myTimeSpentByPeriod": 23.00,
+        "efficiency": "100%",
+        "id": 42
+      },
+      {
+        "taskName": "Landing page mockup",
+        "developers": ["Aaron Thomas"],
+        "workType": "Back-End",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 345.60,
+        "myTimeSpentByPeriod": 45.00,
+        "efficiency": null,
+        "id": 43
+      },
+      {
+        "taskName": "Create endpoint",
+        "developers": ["Aaron Thomas"],
+        "workType": "Back-End",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 756.70,
+        "myTimeSpentByPeriod": 75.00,
+        "efficiency": null,
+        "id": 44
+      },
+      {
+        "taskName": "Landing",
+        "developers": ["Jerome Bell", "Arlene McCoy", "Kotelnytskyi Yevhen", "Ellis Lane", "Daxton Morgan"],
+        "workType": ["Back-End", "Design", "Front-End","Meetings"],
+        "status": "Completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 232.17,
+        "myTimeSpentByPeriod": 23.00,
+        "efficiency": "100%",
+        "id": 45
+      },
+      {
+        "taskName": "Search page mockup",
+        "developers": ["Ralph Edwards", "Darlene Robertson", "Emmett Wise", "Lukas Rodriquez"],
+        "workType": "Front-End",
+        "status": "Completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 232.17,
+        "myTimeSpentByPeriod": 23.00,
+        "efficiency": "100%",
+        "id": 46
+      },
+      {
+        "taskName": "Two levels of the menu mockup",
+        "developers": ["Nadezhda Lazurenko"],
+        "workType": "Design",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 1567.60,
+        "myTimeSpentByPeriod": 15.00,
+        "efficiency": null,
+        "id": 47
+      },
+      {
+        "taskName": "Edit pictures",
+        "developers": [
+          "Emmett Wise", "Lukas Rodriquez"
+        ],
+        "workType": "Front-End",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 678.20,
+        "myTimeSpentByPeriod": 67.00,
+        "efficiency": null,
+        "id": 48
+      },
+      {
+        "taskName": "Subdomain home pages mockup",
+        "developers": ["Sean Mann"],
+        "workType": "Front-End",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 756.70,
+        "myTimeSpentByPeriod": 75.00,
+        "efficiency": null,
+        "id": 49
+      },
+      {
+        "taskName": "Meeting",
+        "developers": ["Kotelnytskyi Yevhen", "Plakhotya Oksana", "Shymko Roman"],
+        "workType": "PM’s",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 345.60,
+        "myTimeSpentByPeriod": 45.00,
+        "efficiency": null,
+        "id": 50
+      },
+      {
+        "taskName": "Search page mockup",
+        "developers": [
+          "Plakhotya Oksana", "Emmett Wise", "Lukas Rodriquez", "Sean Mann", "Alec Gates"
+        ],
+        "workType": [
+          "Front-End", "Meetings"
+        ],
+        "status": "Completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 232.17,
+        "myTimeSpentByPeriod": 23.00,
+        "efficiency": "100%",
+        "id": 51
+      },
+      {
+        "taskName": "Landing page mockup",
+        "developers": ["Aaron Thomas"],
+        "workType": "Back-End",
+        "status": "Non completed",
+        "estimation": 0.0,
+        "totalTimeSpent": 345.60,
+        "myTimeSpentByPeriod": 45.00,
+        "efficiency": null,
+        "id": 52
+      }
     ],
-    "columns": {
-        "labels": [
-          {
-            "taskName": "Task name"
-          },
-          {
-            "developers": "Developers"
-          },
-          {
-            "workType": "Work type"
-          },
-          {
-            "status": "Status"
-          },
-          {
-            "estimation": "Estimation"
-          },
-          {
-            "totalTimeSpent": "Total time spent"
-          },
-          {
-            "myTimeSpentByPeriod": "My time spent by period"
-          },
-          {
-            "efficiency": "Efficiency"
-          }]
-    },
+      "columns": [
+      {
+      "value": "taskName",
+      "label": "Task name"
+      },
+      {
+      "value": "developers",
+      "label": "Developers"
+      },
+      {
+      "value": "workType",
+      "label": "Work type"
+      },
+      {
+      "value": "status",
+      "label": "Status"
+      },
+      {
+      "value": "estimation",
+      "label": "Estimation"
+      },
+      {
+      "value": "totalTimeSpent",
+      "label": "Total time spent"
+      },
+      {
+      "value": "myTimeSpentByPeriod",
+      "label": "My time spent by period"
+      },
+      {
+      "value": "efficiency",
+      "label": "Efficiency"
+      }],
   "status": ["All status", "Completed", "Non completed"],
   "developers": {
-    "allPeople": {
       "design": ["Jerome Bell", "Arlene McCoy", "Nadezhda Lazurenko"],
       "frontEnd": ["Theresa Webb", "Ralph Edwards", "Darlene Robertson", "Emmett Wise", "Lukas Rodriquez", "Sean Mann", "Alec Gates"],
       "backEnd": ["Aaron Thomas", "George Cooke", "John Dawson", "Kyle Jones", "Ellis Lane", "Daxton Morgan"],
       "pms": ["Kotelnytskyi Yevhen", "Plakhotya Oksana", "Shymko Roman"]
-    }
   },
-  "select": {
-    "labelsDev": [
+  "selectCategories": [
       {
-        "design": "Design"
+        "value": "design",
+        "label": "Design"
       },
       {
-        "frontEnd": "Front-End"
+        "value": "frontEnd",
+        "label": "Front-End"
       },
       {
-        "backEnd": "Back-End"
+        "value": "backEnd",
+        "label": "Back-End"
       },
       {
-        "pms": "PM’s"
+        "value": "pms",
+        "label": "PM’s"
       }
-    ]
-  }
+    ],
+  "paginationSelect": [
+    {
+      "option": 5,
+      "id": 1
+    },
+    {
+      "option": 10,
+      "id": 2
+    },
+    {
+      "option": 15,
+      "id": 3
+    },
+    {
+      "option": 20,
+      "id": 4
+    },
+    {
+      "option": 25,
+      "id": 5
+    }
+  ]
 }

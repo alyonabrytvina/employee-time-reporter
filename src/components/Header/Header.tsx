@@ -1,9 +1,11 @@
 import React from 'react';
+import mainLogo from '../../assets/svgs/mainLogo.svg';
+import './Header.scss';
 
 export const Header:React.FC = () => (
   <header>
-    <h1>
-      Data Grid
-    </h1>
+    <div>
+      <img src={mainLogo} alt="main logo" />
+    </div>
   </header>
 );

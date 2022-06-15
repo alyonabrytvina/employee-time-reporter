@@ -1,14 +1,13 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import arrowNext from '../../assets/svgs/arrowLeft.svg';
 import arrowPrev from '../../assets/svgs/arrowRight.svg';
 import arrowNextActive from '../../assets/svgs/arrowLeftActive.svg';
 import arrowPrevActive from '../../assets/svgs/arrowRightActive.svg';
-
 import './Pagination.scss';
-import { PaginationSelect } from '../../App';
-import db from '../../api/fetchData.json';
+import { PaginationSelect } from '../App/App';
 import dropdown from '../../assets/svgs/dropdown.svg';
 import arrow from '../../assets/svgs/arrow.svg';
+import { useDataContext } from '../../context';
 
 enum Enums{
   initialRowsValue = 1,
@@ -27,6 +26,7 @@ interface Props{
 export function Pagination({
   onPageChange, currentPage, onRowsPerPageChange, rowsPerPage, paginationSelect, totalPageCount,
 }: Props) {
+  const { data } = useDataContext();
   const [quantityRows, setQuantityRows] = useState<number>(rowsPerPage);
   const [startRowsValue, setStartRowsValue] = useState<number>(Enums.initialRowsValue);
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -37,13 +37,17 @@ export function Pagination({
     totalPageCount,
   );
 
+  const onClick = () => {
+    onPageChange(totalPageCount);
+  };
+
   const onClickNext = () => {
     onPageChange(currentPage + 1);
 
     setStartRowsValue(startRowsValue + rowsPerPage);
 
-    if (quantityRows > db.data.length) {
-      setQuantityRows(db.data.length - 1);
+    if (quantityRows > data.length) {
+      setQuantityRows(data.length - 1);
       return;
     }
     setQuantityRows(quantityRows + rowsPerPage);
@@ -65,10 +69,11 @@ export function Pagination({
 
   const onClickDropdown = () => setIsOpen(!isOpen);
 
-  const isArrowButtonDisabled = quantityRows >= db.data.length ? db.data.length : quantityRows;
+  const isArrowButtonDisabled = quantityRows >= data.length ? data.length : quantityRows;
 
   const isFirstPageIndex = currentPage !== 1;
   const isLastPageIndex = totalPageCount !== currentPage;
+  const notLast = currentPage <= totalPageCount - 3;
 
   return (
     <div
@@ -113,19 +118,21 @@ export function Pagination({
         {' '}
         of
         {' '}
-        {db.data.length}
+        {data.length}
       </span>
       <div className="pagination__items-wrapper">
         <button className="pagination__prev-page" onClick={onClickPrev} disabled={startRowsValue === Enums.initialRowsValue}>
           <img src={startRowsValue === Enums.initialRowsValue ? arrowPrev : arrowPrevActive} alt="prev" />
         </button>
         <div className="pagination__items">
-          {isFirstPageIndex && <span className="pagination__item">{leftSiblingIndex}</span>}
+          {isFirstPageIndex && <span className="pagination__item" onClick={onClickPrev}>{leftSiblingIndex}</span>}
           <span className="pagination__item_selected">{currentPage}</span>
-          {isLastPageIndex && <span className="pagination__item">{rightSiblingIndex}</span>}
+          {isLastPageIndex && <span className="pagination__item" onClick={onClickNext}>{rightSiblingIndex}</span>}
+          {notLast && <div>...</div>}
+          {rightSiblingIndex !== totalPageCount && <span className="pagination__item" onClick={onClick}>{totalPageCount}</span>}
         </div>
-        <button onClick={onClickNext} className="pagination__next-page" disabled={quantityRows >= db.data.length}>
-          <img src={quantityRows >= db.data.length ? arrowNext : arrowNextActive} alt="next" />
+        <button onClick={onClickNext} className="pagination__next-page" disabled={quantityRows >= data.length}>
+          <img src={quantityRows >= data.length ? arrowNext : arrowNextActive} alt="next" />
         </button>
       </div>
     </div>

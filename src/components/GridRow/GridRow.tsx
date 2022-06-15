@@ -1,15 +1,15 @@
 import React, { useRef, useState } from 'react';
-import './ExcelItem.scss';
+import './GridRow.scss';
 import { useDataContext } from '../../context';
-import { ItemRow } from '../../App';
+import { ItemRow } from '../App/App';
 import '../../assets/styles/global.scss';
 
 interface Props{
   data: ItemRow
 }
 
-export function ExcelItem({ data }: Props) {
-  const { onChangeContent, columns } = useDataContext();
+export function GridRow({ data }: Props) {
+  const { onChangeCellContent, columns } = useDataContext();
 
   const refTextArea = useRef<HTMLTextAreaElement>(null);
   const refSpanElement = useRef<HTMLSpanElement>(null);
@@ -33,12 +33,12 @@ export function ExcelItem({ data }: Props) {
     }
   };
 
-  const onClickHiddenContent = (index: number, isOpen: boolean) => {
+  const onClickHideContent = (index: number, isOpen: boolean) => {
     setIsDropdownOpen(isOpen);
     setCurIndexCell(index);
   };
 
-  const closeOpenDropdown = (e: React.MouseEvent<HTMLElement>) => {
+  const closeDropdown = (e: React.MouseEvent<HTMLElement>) => {
     if (refSpanElement.current && isDropdownOpen && !refSpanElement.current.contains(e.target as HTMLDivElement)) {
       setIsDropdownOpen(false);
     }
@@ -52,17 +52,19 @@ export function ExcelItem({ data }: Props) {
 
   return (
     <div
-      className={selectedItems.includes(data.id) ? 'grid__row_selected' : 'grid__row'}
-      onClick={(e) => closeOpenDropdown(e)}
+      className={selectedItems.includes(data.id) ? 'grid-row_selected' : 'grid-row'}
+      onClick={(e) => closeDropdown(e)}
     >
-      <div className="grid-item__cell">
-        <input type="checkbox" className="custom-checkbox" onClick={() => onClickCheckbox(data.id)} />
+      <div className="checkbox-wrapper">
+        <label htmlFor="checkbox">
+          <input className="checkbox" type="checkbox" onClick={() => onClickCheckbox(data.id)} />
+        </label>
       </div>
-      { columns.map((column, indexCell) => {
+      {columns.map((column, indexCell) => {
         const itemCell = data[column.value as keyof ItemRow];
         return (
           <div
-            className="grid-item__cell"
+            className="grid-row__cell"
             key={Math.random()}
             onClick={(e) => closeEdit(e, indexCell)}
             style={{
@@ -74,15 +76,19 @@ export function ExcelItem({ data }: Props) {
               ? isContentEdit && curIndexCell === indexCell
                 ? (
                   <textarea
-                    className="cell-edit"
-                    onChange={(e) => onChangeContent(e, data, column.value)}
+                    className="grid-row__textarea"
+                    onChange={(e) => onChangeCellContent(e, data, column.value)}
                     defaultValue={itemCell.join(', ')}
                     ref={refTextArea}
                   />
                 ) : isDropdownOpen && curIndexCell === indexCell ? (
                   <>
                     <span onClick={(e) => closeEdit(e, indexCell)}>{itemCell[0]}</span>
-                    <span ref={refSpanElement} className="grid-item__cell_hide-content">
+                    <span
+                      ref={refSpanElement}
+                      className="grid-row__cell_hide"
+                      onClick={() => onClickHideContent(indexCell, false)}
+                    >
                       Hide(
                       {itemCell.length - 1}
                       )
@@ -102,7 +108,7 @@ export function ExcelItem({ data }: Props) {
                 ) : (
                   <>
                     <span onClick={() => onClickCellItem(indexCell)}>{itemCell[0]}</span>
-                    <span className="grid-item__cell_hide-content" onClick={() => onClickHiddenContent(indexCell, true)}>
+                    <span className="grid-row__cell_hide" onClick={() => onClickHideContent(indexCell, true)}>
                       {Array.isArray(itemCell) && itemCell.length > 1 && `Show more(
                           ${itemCell.length - 1}
                       )`}
@@ -112,8 +118,8 @@ export function ExcelItem({ data }: Props) {
               : isContentEdit && curIndexCell === indexCell
                 ? (
                   <textarea
-                    className="cell-edit"
-                    onChange={(e) => onChangeContent(e, data, column.value)}
+                    className="grid-row__textarea"
+                    onChange={(e) => onChangeCellContent(e, data, column.value)}
                     defaultValue={itemCell as any}
                     ref={refTextArea}
                   />

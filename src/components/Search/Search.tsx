@@ -23,12 +23,15 @@ export function Search() {
 
   return (
     <div className="search-wrapper">
-      <input
-        type="search"
-        className="search"
-        onKeyDown={(e) => onKeyDown(e)}
-        onChange={onChange}
-      />
+      <label htmlFor="search">
+        <input
+          type="search"
+          className="search"
+          onKeyDown={(e) => onKeyDown(e)}
+          onChange={onChange}
+        />
+      </label>
+
       <div
         onClick={() => onClickSearch(searchValue)}
       >

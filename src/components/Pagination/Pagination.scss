@@ -1,8 +1,7 @@
 .pagination-wrapper{
   display: flex;
   align-items: center;
-  margin-left: 20px;
-  margin-bottom: 150px;
+  margin: 50px 0 50px 20px;
 }
 
 .pagination{
@@ -10,7 +9,7 @@
 
   &__items-wrapper{
     background: var(--color-primary-odd);
-    width: 122px;
+    width: 200px;
     height: 40px;
     border: 1px solid #3D444E;
     border-radius: 7px;
@@ -22,7 +21,7 @@
 
   &__items{
     min-width: 50px;
-    width: 80px;
+    width: 130px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -110,6 +109,7 @@
     align-items: center;
     justify-content: center;
     height: 100%;
+    margin-left: 5px;
   }
 
   &__tooltip-select {

@@ -12,7 +12,6 @@
     justify-content: start;
     border-radius: 7px;
     margin: 5px 20px;
-    background: rgba(143, 127, 255, 0.25);
     color: #FFFFFF;
   }
 
@@ -45,39 +44,16 @@
   }
 
   &__textarea{
-    background:  #BFBAFA;
+    //background:  #BFBAFA;
     font-family: 'Montserrat', sans-serif;
     border: 1px solid #fff;
-    color: var(--color-primary-even);
+    //color: var(--color-primary-even);
     font-size: 16px;
     width: 80%;
     height: 100%;
     padding: 0 5px;
+    overflow: scroll;
   }
-
-  &__textarea::-webkit-scrollbar {
-    background: #fff;
-    width: 10px;
-  }
-
-  &__textarea::-webkit-scrollbar-corner {
-    background: #BFBAFA;
-    border-radius: 2px;
-  }
-
-  &__textarea::-webkit-scrollbar-track{
-    border-radius: 2px;
-  }
-}
-
-.grid-row:nth-child(odd){
-  background-color: var(--color-primary-odd);
-}
-
-.grid-row:nth-child(even){
-  background-color: var(--color-primary-even);
-}
-
 
 .tooltip {
   position: absolute;
@@ -105,7 +81,7 @@
   content:"";
   top: -7px;
   margin-left: 20px;
-  border-bottom: 8px solid var(--color-secondary);
+  border-bottom: 8px solid var(--color-primary-even);
   border-right: 6px solid transparent;
   border-left: 6px solid transparent;
 }
@@ -118,7 +94,7 @@
 
 .tooltip-arrow:before {
   top: -8px;
-  border-color: transparent transparent var(--color-secondary) transparent;
+  border-color: transparent transparent var(--color-primary-even) transparent;
   border-width: 8px;
 }
 
@@ -168,4 +144,4 @@ textarea{
 
 .checkbox-wrapper input{
   cursor: pointer;
-}
+}}

@@ -16,7 +16,7 @@ code {
 
 input[type="checkbox"] {
   appearance: none;
-  background-color: #242B35;
+  /*background-color: #242B35;*/
   font: inherit;
   color: #B6B4C6;
   min-width: 16px;

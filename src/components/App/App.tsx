@@ -5,6 +5,7 @@ import { Header } from '../Header/Header';
 import db from '../../api/fetchData.json';
 import { services } from '../../api/services';
 import './App.scss';
+import { ThemeContext, themes } from '../../context/themeContext';
 
 const Grid = lazy(() => import('../Grid/Grid'));
 
@@ -46,6 +47,9 @@ export interface RootObject {
 
 function App() {
   const [dataBase, setDataBase] = useState<RootObject>(null!);
+  const [isModeDark, setIsModeDark] = useState(true);
+
+  const changeMode = () => setIsModeDark(!isModeDark);
 
   useEffect(() => {
     services('db').then((result) => {
@@ -54,12 +58,16 @@ function App() {
   }, []);
 
   return dataBase && (
-    <div className="wrapper">
-      <Header />
+  <ThemeContext.Provider value={isModeDark ? themes.dark : themes.light}>
+    <div
+      className="wrapper"
+    >
+      <Header changeMode={changeMode} isModeDark={isModeDark} />
       <Suspense fallback={<h1>Loading</h1>}>
         <Grid dataBase={dataBase} />
       </Suspense>
     </div>
+  </ThemeContext.Provider>
   );
 }
 

@@ -1,4 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, {
+  useContext, useEffect, useMemo, useState,
+} from 'react';
 import './Grid.scss';
 import { GridRow } from '../GridRow/GridRow';
 import sortIcon from '../../assets/svgs/sort.svg';
@@ -6,12 +8,13 @@ import confirmation from '../../assets/svgs/checkMark.svg';
 import { Search } from '../Search/Search';
 import { SelectStatus } from '../SelectStatus/SelectStatus';
 import { SelectDevelopers } from '../SelectDevelopers/SelectDevelopers';
-import { Context } from '../../context';
+import { GridContext } from '../../context/gridContext';
 import {
   ItemRow, RootObject,
 } from '../App/App';
 import { Pagination } from '../Pagination/Pagination';
 import { UsePagination } from '../../hooks/usePagination';
+import { ThemeContext } from '../../context/themeContext';
 
 interface Props{
   dataBase: RootObject
@@ -93,19 +96,22 @@ function Grid({
     setSortedData(filteredData);
   };
 
-  const onChangeCellContent = (event: React.ChangeEvent<HTMLTextAreaElement>, itemRow: Record<string, any>, key: string) => {
-    const value = event.target.value.trim();
-    const hasPunctuationMarks = /([;,.[\d]+)$/.test(value);
+  const onChangeCellContent = (eventValue: string, itemRow: Record<string, any>, key: string) => {
+    const hasPunctuationMarks = /([;,.])/.test(eventValue);
 
     if (hasPunctuationMarks) {
-      itemRow[key] = value.split(/[,.;]/);
-      return;
+      itemRow[key] = eventValue.split(/[,.;]/);
+
+      return itemRow[key];
     }
-    itemRow[key] = value.toString();
+
+    itemRow[key] = eventValue.toString();
   };
 
   const categoriesValues = selectCategories.map((category) => category.value);
   const categoriesLabels = selectCategories.map((category) => category.label);
+
+  const theme = useContext(ThemeContext);
 
   const provider = useMemo(() => ({
     data,
@@ -122,26 +128,57 @@ function Grid({
   }), []);
 
   return (
-    <Context.Provider value={provider}>
-      <main className="grid">
+    <GridContext.Provider value={provider}>
+      <main
+        className="grid"
+        style={{
+          background: theme.mainBackground,
+          paddingTop: '40px',
+        }}
+      >
         <SelectDevelopers />
         <SelectStatus />
         <Search />
-        <div className="grid-header header">
+        <div
+          className="grid-header header"
+          style={{
+            background: theme.backgroundHeader,
+            border: theme.border,
+            color: theme.mainColor,
+          }}
+        >
           <div className="grid-header__cell img-wrapper">
-            <img src={confirmation} alt="check" />
+            <img
+              src={confirmation}
+              alt="check"
+              style={{
+                filter: theme.arrowColor,
+              }}
+            />
           </div>
           {columns.map((column) => (
             <div className="grid-header__cell" key={Math.random()} onClick={() => onSort(column.value)}>
               <div>{column.label}</div>
               <div className="img-wrapper">
-                <img className="grid__icon" src={sortIcon} alt="sort icon" />
+                <img
+                  className="grid__icon"
+                  src={sortIcon}
+                  alt="sort icon"
+                  style={{
+                    filter: theme.arrowColor,
+                  }}
+                />
               </div>
             </div>
           ))}
         </div>
         <div className="grid-rows-wrapper">
-          {sortedData.map((item) => <GridRow key={item.id} data={item} />)}
+          {sortedData.map((item) => (
+            <GridRow
+              key={item.id}
+              data={item}
+            />
+          ))}
         </div>
         <Pagination
           currentPage={currentPage}
@@ -152,7 +189,7 @@ function Grid({
           totalPageCount={totalPageCount}
         />
       </main>
-    </Context.Provider>
+    </GridContext.Provider>
   );
 }
 

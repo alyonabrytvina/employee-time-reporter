@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './Search.scss';
 import searchIcon from '../../assets/svgs/search icon.svg';
-import { useDataContext } from '../../context';
+import { useDataContext } from '../../context/gridContext';
+import { ThemeContext } from '../../context/themeContext';
 
 export function Search() {
   const { onClickSearch } = useDataContext();
@@ -21,21 +22,36 @@ export function Search() {
     }
   };
 
+  const theme = useContext(ThemeContext);
+
   return (
-    <div className="search-wrapper">
+    <div
+      className="search-wrapper"
+    >
       <label htmlFor="search">
         <input
           type="search"
           className="search"
           onKeyDown={(e) => onKeyDown(e)}
           onChange={onChange}
+          style={{
+            background: theme.backgroundInput,
+            color: theme.mainColor,
+            border: theme.border,
+          }}
         />
       </label>
-
       <div
         onClick={() => onClickSearch(searchValue)}
       >
-        <img src={searchIcon} alt="searchIcon" className="search-icon" />
+        <img
+          src={searchIcon}
+          alt="searchIcon"
+          className="search-icon"
+          style={{
+            filter: theme.arrowColor,
+          }}
+        />
       </div>
     </div>
   );

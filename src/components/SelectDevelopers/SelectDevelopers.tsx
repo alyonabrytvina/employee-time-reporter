@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import arrow from '../../assets/svgs/arrow.svg';
 import dropdown from '../../assets/svgs/dropdown.svg';
 import './SelectDevelopers.scss';
-import { useDataContext } from '../../context';
+import { useDataContext } from '../../context/gridContext';
+import { ThemeContext } from '../../context/themeContext';
 
 export interface Developers{
   design: string[]
@@ -16,6 +17,8 @@ export function SelectDevelopers() {
     onChangeSelectDev, developers, selectCategories,
     categoriesValues, categoriesLabels,
   } = useDataContext();
+
+  const theme = useContext(ThemeContext);
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [categories, setCategories] = useState<string[]>(categoriesValues);
@@ -86,11 +89,22 @@ export function SelectDevelopers() {
       <div
         className="select-dev"
         onClick={onClickOpen}
+        style={{
+          background: theme.backgroundInput,
+          color: theme.mainColor,
+          border: isOpen ? '1px solid #8F7FFF' : theme.border,
+        }}
       >
         {categories?.length === initialCategoriesLength ? 'All people' : [...optionsNames].join(', ')}
       </div>
       <div className="select-dev__arrow">
-        <img src={isOpen ? dropdown : arrow} alt="arrow" />
+        <img
+          src={isOpen ? dropdown : arrow}
+          alt="arrow"
+          style={{
+            filter: theme.arrowColor,
+          }}
+        />
       </div>
       {isOpen && (
         <div id="tooltip-select-dev" className="left">
@@ -113,7 +127,7 @@ export function SelectDevelopers() {
                         className="checkbox"
                         type="checkbox"
                         onChange={() => onClickOption(key)}
-                        checked={!!dev[key as keyof Developers]?.length}
+                        checked={!!dev[key as keyof Developers].length}
                       />
                     </label>
                     <span>
@@ -137,7 +151,7 @@ export function SelectDevelopers() {
                             className="checkbox"
                             type="checkbox"
                             onChange={() => onClickSubCat(key, item)}
-                            checked={dev[key as keyof Developers]?.includes(item)}
+                            checked={dev[key as keyof Developers].includes(item)}
                           />
                         </label>
                         <span>{item}</span>

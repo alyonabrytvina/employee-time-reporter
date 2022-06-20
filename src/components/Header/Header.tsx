@@ -1,11 +1,35 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import mainLogo from '../../assets/svgs/mainLogo.svg';
+import darkMode from '../../assets/svgs/moon.svg';
+import lightMode from '../../assets/svgs/sun.svg';
 import './Header.scss';
+import { ThemeContext } from '../../context/themeContext';
 
-export const Header:React.FC = () => (
-  <header>
-    <div>
-      <img src={mainLogo} alt="main logo" />
-    </div>
-  </header>
-);
+interface HeaderProps{
+  changeMode: () => void
+  isModeDark: boolean
+}
+
+export function Header({ changeMode, isModeDark }: HeaderProps) {
+  const theme = useContext(ThemeContext);
+
+  return (
+    <header style={{
+      background: theme.backgroundHeader,
+      border: theme.border,
+      color: theme.mainColor,
+    }}
+    >
+      {/* <div className="img-wrapper"> */}
+      {/*  <img src={mainLogo} alt="main logo" /> */}
+      {/* </div> */}
+      <div onClick={changeMode}>
+        <img
+          className="mode-icon"
+          src={isModeDark ? lightMode : darkMode}
+          alt="mode icon"
+        />
+      </div>
+    </header>
+  );
+}

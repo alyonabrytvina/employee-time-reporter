@@ -14,8 +14,7 @@
   &__cell{
     display: flex;
     align-items: center;
-    //justify-content: space-between;
-    min-width: 65px;
+    min-width: 55px;
     height: 100%;
     width: 140px;
     position: relative;
@@ -32,7 +31,6 @@
   &__cell:first-child{
     display: flex;
     align-items: center;
-    //justify-content: space-around;
     width: 25px;
   }
 
@@ -75,7 +73,6 @@
 .header{
   display: flex;
   align-items: center;
-  background-color: #2D333D;
   border-radius: 7px;
   margin: 5px 20px;
   font-weight: 600;
@@ -84,7 +81,7 @@
 }
 
 .grid-rows-wrapper{
-  min-height: 450px;
+  min-height: 300px;
 }
 
 .confirmation{

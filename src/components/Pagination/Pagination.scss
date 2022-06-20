@@ -1,7 +1,7 @@
 .pagination-wrapper{
   display: flex;
   align-items: center;
-  margin: 50px 0 50px 20px;
+  margin: 50px 0 200px 20px;
 }
 
 .pagination{
@@ -11,7 +11,7 @@
     background: var(--color-primary-odd);
     width: 200px;
     height: 40px;
-    border: 1px solid #3D444E;
+    //border: 1px solid #3D444E;
     border-radius: 7px;
     margin-left: 12px;
     display: flex;
@@ -81,6 +81,7 @@
     padding: 5px 10px;
     display: flex;
     justify-content: center;
+    border-radius: 2px;
   }
 
   &__option:focus{
@@ -109,8 +110,11 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    margin-left: 5px;
   }
+
+  &__arrow-icon{
+  margin-left: 5px;
+}
 
   &__tooltip-select {
     position: absolute;
@@ -121,8 +125,8 @@
     z-index: 1;
   }
 
-  &__tooltip-select-arrow::after {
-    right: 40%;
+  &__tooltip-select-arrow:after {
+    left: 10%;
     position: absolute;
     content:"";
     top: -7px;
@@ -134,7 +138,7 @@
 
   &__tooltip-select-arrow:after,
   &__tooltip-select-arrow:before {
-    right: 40%;
+    left: 10%;
     position: absolute;
     content:"";
     top: -7px;
@@ -155,6 +159,8 @@
     border-color: transparent transparent #353E56 transparent;
     border-width: 8px;
   }
+
+
 
   &__tooltip-select-label {
     color: #B6B4C6;

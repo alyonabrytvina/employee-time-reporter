@@ -1,9 +1,11 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, {
+  useContext, useRef, useState,
+} from 'react';
 import './GridRow.scss';
-import { useDataContext } from '../../context/gridContext';
-import { ItemRow } from '../App/App';
-import '../../assets/styles/global.scss';
-import { ThemeContext } from '../../context/themeContext';
+import { useDataContext } from '../../../context/gridContext';
+import { ItemRow } from '../../App/App';
+import '../../../assets/styles/global.scss';
+import { ThemeContext } from '../../../context/themeContext';
 
 interface Props{
   data: ItemRow
@@ -45,7 +47,7 @@ export function GridRow({ data }: Props) {
     }
   };
 
-  const closeEdit = (e: React.MouseEvent<HTMLElement>, indexCell: number) => {
+  const closeEdit = (e: React.MouseEvent<HTMLElement>) => {
     if (refTextArea.current && isContentEdit && !refTextArea.current.contains(e.target as HTMLTextAreaElement)) {
       setIsContentEdit(false);
     }
@@ -77,11 +79,12 @@ export function GridRow({ data }: Props) {
       </div>
       {columns.map((column, indexCell) => {
         const itemCell = data[column.value as keyof ItemRow];
+
         return (
           <div
             className="grid-row__cell"
             key={Math.random()}
-            onClick={(e) => closeEdit(e, indexCell)}
+            onClick={closeEdit}
             style={{
               display: 'flex',
               alignItems: typeof itemCell === 'number' ? 'flex-end' : itemCell?.includes('%') ? 'center' : 'flex-start',
@@ -101,7 +104,7 @@ export function GridRow({ data }: Props) {
                   </div>
                 ) : isDropdownOpen && curIndexCell === indexCell ? (
                   <>
-                    <span onClick={(e) => closeEdit(e, indexCell)}>{itemCell[0]}</span>
+                    <span onClick={closeEdit}>{itemCell[0]}</span>
                     <span
                       ref={refSpanElement}
                       className="grid-row__cell_hide"
@@ -156,7 +159,14 @@ export function GridRow({ data }: Props) {
                     {itemCell}
                   </div>
                 ) : (
-                  <div onClick={() => onClickCellItem(indexCell)}>{itemCell}</div>
+                  <div
+                    onClick={() => onClickCellItem(indexCell)}
+                    style={{
+                      wordBreak: typeof itemCell === 'string' ? 'break-word' : 'normal',
+                    }}
+                  >
+                    {itemCell}
+                  </div>
                 )}
           </div>
         );

@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import arrow from '../../assets/svgs/arrow.svg';
-import dropdown from '../../assets/svgs/dropdown.svg';
+import arrow from '../../../assets/svgs/arrow.svg';
+import dropdown from '../../../assets/svgs/dropdown.svg';
 import './SelectDevelopers.scss';
-import { useDataContext } from '../../context/gridContext';
-import { ThemeContext } from '../../context/themeContext';
+import { useDataContext } from '../../../context/gridContext';
+import { ThemeContext } from '../../../context/themeContext';
+import { useDropdown } from '../../../hooks/useDropdown';
 
 export interface Developers{
   design: string[]
@@ -20,14 +21,19 @@ export function SelectDevelopers() {
 
   const theme = useContext(ThemeContext);
 
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const {
+    ref,
+    isDropdownOpen,
+    setIsDropdownOpen,
+  } = useDropdown();
+
   const [categories, setCategories] = useState<string[]>(categoriesValues);
   const [dev, setDev] = useState<Record<string, string[]>>(developers);
 
   const [initialCategoriesLength, setInitialCategoriesLength] = useState<number>(0);
   const [optionsNames, setOptionsNames] = useState<string[]>(categoriesLabels);
 
-  const onClickOpen = () => setIsOpen(!isOpen);
+  const onClickOpen = () => setIsDropdownOpen(!isDropdownOpen);
 
   const onClickSubCat = (key: string, item: string) => {
     if (dev[key as keyof Developers]?.includes(item)) {
@@ -85,6 +91,7 @@ export function SelectDevelopers() {
   return (
     <div
       className="select-dev-wrapper"
+      ref={ref}
     >
       <div
         className="select-dev"
@@ -92,21 +99,21 @@ export function SelectDevelopers() {
         style={{
           background: theme.backgroundInput,
           color: theme.mainColor,
-          border: isOpen ? '1px solid #8F7FFF' : theme.border,
+          border: isDropdownOpen ? '1px solid #8F7FFF' : theme.border,
         }}
       >
         {categories?.length === initialCategoriesLength ? 'All people' : [...optionsNames].join(', ')}
       </div>
-      <div className="select-dev__arrow">
+      <div className="select-dev__arrow" onClick={onClickOpen}>
         <img
-          src={isOpen ? dropdown : arrow}
+          src={isDropdownOpen ? dropdown : arrow}
           alt="arrow"
           style={{
             filter: theme.arrowColor,
           }}
         />
       </div>
-      {isOpen && (
+      {isDropdownOpen && (
         <div id="tooltip-select-dev" className="left">
           <div className="tooltip-select-dev-arrow" />
           <div className="tooltip-select-dev-label">

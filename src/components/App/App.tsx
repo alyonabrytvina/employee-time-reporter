@@ -7,7 +7,7 @@ import { services } from '../../api/services';
 import './App.scss';
 import { ThemeContext, themes } from '../../context/themeContext';
 
-const Grid = lazy(() => import('../Grid/Grid'));
+const Grid = lazy(() => import('../GridRoot/Grid/Grid'));
 
 export interface ItemRow{
     taskName: string,
@@ -31,7 +31,7 @@ export interface SelectCategories{
     label: string
 }
 
-export interface PaginationSelect{
+export interface PaginationSelectI{
     option: number
     id: number
 }
@@ -42,12 +42,12 @@ export interface RootObject {
     status: string[]
     selectCategories: SelectCategories[]
     developers: Record<string, string[]>
-    paginationSelect: PaginationSelect[]
+    paginationSelect: PaginationSelectI[]
 }
 
 function App() {
   const [dataBase, setDataBase] = useState<RootObject>(null!);
-  const [isModeDark, setIsModeDark] = useState(true);
+  const [isModeDark, setIsModeDark] = useState<boolean>(true);
 
   const changeMode = () => setIsModeDark(!isModeDark);
 
@@ -59,9 +59,7 @@ function App() {
 
   return dataBase && (
   <ThemeContext.Provider value={isModeDark ? themes.dark : themes.light}>
-    <div
-      className="wrapper"
-    >
+    <div className="wrapper">
       <Header changeMode={changeMode} isModeDark={isModeDark} />
       <Suspense fallback={<h1>Loading</h1>}>
         <Grid dataBase={dataBase} />

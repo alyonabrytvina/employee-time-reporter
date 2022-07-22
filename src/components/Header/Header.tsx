@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import mainLogo from '../../assets/svgs/mainLogo.svg';
 import darkMode from '../../assets/svgs/moon.svg';
 import lightMode from '../../assets/svgs/sun.svg';
 import './Header.scss';
@@ -20,9 +19,6 @@ export function Header({ changeMode, isModeDark }: HeaderProps) {
       color: theme.mainColor,
     }}
     >
-      {/* <div className="img-wrapper"> */}
-      {/*  <img src={mainLogo} alt="main logo" /> */}
-      {/* </div> */}
       <div onClick={changeMode}>
         <img
           className="mode-icon"

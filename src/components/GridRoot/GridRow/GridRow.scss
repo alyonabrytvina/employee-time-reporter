@@ -145,3 +145,7 @@ textarea{
 .checkbox-wrapper input{
   cursor: pointer;
 }}
+
+div[contenteditable] {
+  outline: none;
+}

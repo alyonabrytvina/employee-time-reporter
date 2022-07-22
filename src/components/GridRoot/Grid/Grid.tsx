@@ -3,18 +3,18 @@ import React, {
 } from 'react';
 import './Grid.scss';
 import { GridRow } from '../GridRow/GridRow';
-import sortIcon from '../../assets/svgs/sort.svg';
-import confirmation from '../../assets/svgs/checkMark.svg';
-import { Search } from '../Search/Search';
-import { SelectStatus } from '../SelectStatus/SelectStatus';
-import { SelectDevelopers } from '../SelectDevelopers/SelectDevelopers';
-import { GridContext } from '../../context/gridContext';
+import sortIcon from '../../../assets/svgs/sort.svg';
+import confirmation from '../../../assets/svgs/checkMark.svg';
+import { Search } from '../../Filters/Search/Search';
+import { SelectStatus } from '../../Filters/SelectStatus/SelectStatus';
+import { SelectDevelopers } from '../../Filters/SelectDevelopers/SelectDevelopers';
+import { GridContext } from '../../../context/gridContext';
 import {
   ItemRow, RootObject,
-} from '../App/App';
-import { Pagination } from '../Pagination/Pagination';
-import { UsePagination } from '../../hooks/usePagination';
-import { ThemeContext } from '../../context/themeContext';
+} from '../../App/App';
+import { Pagination } from '../../PaginationRoot/Pagination/Pagination';
+import { UsePagination } from '../../../hooks/usePagination';
+import { ThemeContext } from '../../../context/themeContext';
 
 interface Props{
   dataBase: RootObject
@@ -31,23 +31,16 @@ function Grid({
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [isSorted, setIsSorted] = useState<boolean>(false);
 
-  const totalRowsCount = data.length;
-  const totalPageCount = Math.ceil(totalRowsCount / rowsPerPage);
-
-  const paginationRange = UsePagination({
-    totalRowsCount, rowsPerPage, totalPageCount, currentPage, setCurrentPage,
+  const {
+    paginationRange,
+    totalPageCount,
+  } = UsePagination({
+    rowsPerPage,
+    currentPage,
+    setCurrentPage,
   });
 
   const [sortedData, setSortedData] = useState(Object.values(paginationRange));
-  useEffect(() => {
-    if (currentPage > totalPageCount) {
-      setCurrentPage(1);
-    }
-
-    if (currentPage === 0) {
-      setCurrentPage(totalPageCount);
-    }
-  }, [currentPage]);
 
   useEffect(() => {
     setSortedData(Object.values(paginationRange));

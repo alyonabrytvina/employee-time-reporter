@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import db from '../api/fetchData.json';
 import { ItemRow } from '../components/App/App';
 
@@ -6,28 +6,36 @@ interface Pagination{
   rowsPerPage: number,
   currentPage: number,
   setCurrentPage: (value: number) => void
-  totalRowsCount: number
-  totalPageCount: number
 }
 
 export const UsePagination = ({
-  totalRowsCount,
   rowsPerPage,
-  totalPageCount,
   currentPage,
   setCurrentPage,
 }: Pagination) => {
-  if (currentPage > totalPageCount) {
-    setCurrentPage(1);
-  }
+  const { data } = db.db;
+  const totalRowsCount = data.length;
+  const totalPageCount = Math.ceil(totalRowsCount / rowsPerPage);
 
-  if (currentPage === 0) {
-    setCurrentPage(totalPageCount);
-  }
-  return useMemo(() => {
+  useEffect(() => {
+    if (currentPage > totalPageCount) {
+      setCurrentPage(1);
+    }
+
+    if (currentPage === 0) {
+      setCurrentPage(totalPageCount);
+    }
+  }, [currentPage]);
+
+  const paginationRange = useMemo(() => {
     const start:number = currentPage * rowsPerPage - rowsPerPage;
     const end:number = start + rowsPerPage;
 
-    return (db.db.data as ItemRow[]).slice(start, end);
+    return (data as ItemRow[]).slice(start, end);
   }, [totalRowsCount, rowsPerPage, currentPage]);
+
+  return {
+    paginationRange,
+    totalPageCount,
+  };
 };

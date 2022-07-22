@@ -1,11 +1,9 @@
 import React, {
-  useContext, useEffect, useMemo, useRef, useState,
+  useContext, useEffect, useMemo, useState,
 } from 'react';
 import './Grid.scss';
 import { GridRow } from '../GridRow/GridRow';
-// @ts-ignore
 import sortIcon from '../../../assets/svgs/sort.svg';
-// @ts-ignore
 import confirmation from '../../../assets/svgs/checkMark.svg';
 import { Search } from '../../Search/Search';
 import { SelectStatus } from '../../Filters/SelectStatus/SelectStatus';
@@ -17,7 +15,6 @@ import {
 import { Pagination } from '../../PaginationRoot/Pagination/Pagination';
 import { UsePagination } from '../../../hooks/usePagination';
 import { ThemeContext } from '../../../context/themeContext';
-import { useDropdown } from '../../../hooks/useDropdown';
 
 interface Props{
   dataBase: RootObject
@@ -108,22 +105,6 @@ function Grid({
   const categoriesValues = selectCategories.map((category) => category.value);
   const categoriesLabels = selectCategories.map((category) => category.label);
 
-  const [isContentEdit, setIsContentEdit] = useState<boolean>(false);
-  const refTextArea = useRef<HTMLDivElement>(null);
-
-  // const closeEdit = (e: React.MouseEvent<HTMLElement>) => {
-  //   console.log('2');
-  //   if (refTextArea.current && isContentEdit && !refTextArea.current.contains(e.target as HTMLTextAreaElement)) {
-  //     setIsContentEdit(false);
-  //   }
-  // };
-
-  const {
-    ref,
-    isDropdownOpen,
-    setIsDropdownOpen,
-  } = useDropdown();
-
   const provider = useMemo(() => ({
     data,
     onChangeCellContent,
@@ -189,9 +170,6 @@ function Grid({
             <GridRow
               key={item.id}
               data={item}
-              setIsContentEdit={setIsContentEdit}
-              isContentEdit={isContentEdit}
-              refTextArea={refTextArea}
             />
           ))}
         </div>

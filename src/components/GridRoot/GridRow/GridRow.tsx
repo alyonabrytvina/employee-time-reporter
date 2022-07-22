@@ -1,5 +1,5 @@
 import React, {
-  useContext, useEffect, useRef, useState,
+  useContext, useState,
 } from 'react';
 import './GridRow.scss';
 import { useDataContext } from '../../../context/gridContext';
@@ -14,20 +14,15 @@ interface Props{
 
 export function GridRow({ data }: Props) {
   const { onChangeCellContent, columns } = useDataContext();
-
-  const refTextArea = useRef<HTMLDivElement>(null);
-  const refSpanElement = useRef<HTMLSpanElement>(null);
-
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
-  const [isContentEdit, setIsContentEdit] = useState<boolean>(false);
-
   const [curIndexCell, setCurIndexCell] = useState<number>(0);
-  // const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
 
   const {
     ref,
     isDropdownOpen,
     setIsDropdownOpen,
+    isContentEdit,
+    setIsContentEdit,
   } = useDropdown();
 
   const onClickCellItem = (indexCell: number) => {
@@ -48,11 +43,6 @@ export function GridRow({ data }: Props) {
     setCurIndexCell(index);
   };
 
-  const closeEdit = (e: React.MouseEvent<HTMLElement>, indexCell: number) => {
-    if (refTextArea.current && isContentEdit && !refTextArea.current.contains(e.target as HTMLTextAreaElement)) {
-      setIsContentEdit(false);
-    }
-  };
   const theme = useContext(ThemeContext);
   return (
     <div
@@ -64,9 +54,7 @@ export function GridRow({ data }: Props) {
       }}
     >
       <div className="checkbox-wrapper">
-        <label
-          htmlFor="checkbox"
-        >
+        <label htmlFor="checkbox">
           <input
             className="checkbox"
             type="checkbox"
@@ -84,7 +72,6 @@ export function GridRow({ data }: Props) {
           <div
             className="grid-row__cell"
             key={Math.random()}
-            onClick={(e) => closeEdit(e, indexCell)}
             style={{
               display: 'flex',
               alignItems: typeof itemCell === 'number' ? 'flex-end' : itemCell?.includes('%') ? 'center' : 'flex-start',
@@ -98,13 +85,15 @@ export function GridRow({ data }: Props) {
                     className="grid-row__textarea"
                     onInput={(event) => onChangeCellContent(event.currentTarget.innerText, data, column.value)}
                     suppressContentEditableWarning
-                    ref={refTextArea}
+                    ref={ref}
                   >
-                    {itemCell}
+                    {itemCell.join(', ')}
                   </div>
                 ) : isDropdownOpen && curIndexCell === indexCell ? (
                   <>
-                    <span onClick={(e) => closeEdit(e, indexCell)}>{itemCell[0]}</span>
+                    <span>
+                      {itemCell[0]}
+                    </span>
                     <span
                       ref={ref}
                       className="grid-row__cell_hide"
@@ -114,12 +103,8 @@ export function GridRow({ data }: Props) {
                       {itemCell.length - 1}
                       )
                     </span>
-                    <div
-                      className="tooltip"
-                    >
-                      <div
-                        className="tooltip-arrow"
-                      />
+                    <div className="tooltip">
+                      <div className="tooltip-arrow" />
                       <div
                         className="tooltip-label"
                         style={{
@@ -129,7 +114,13 @@ export function GridRow({ data }: Props) {
                         }}
                       >
                         {itemCell.slice(1).map((content) => (
-                          <div key={Math.random()} className="tooltip-label__item">
+                          <div
+                            key={Math.random()}
+                            className="tooltip-label__item"
+                            style={{
+                              wordBreak: content.length > 13 ? 'break-word' : 'normal',
+                            }}
+                          >
                             {content}
                             <br />
                           </div>
@@ -151,7 +142,7 @@ export function GridRow({ data }: Props) {
                 ? (
                   <div
                     suppressContentEditableWarning
-                    ref={refTextArea}
+                    ref={ref}
                     onInput={(event) => onChangeCellContent(event.currentTarget.innerText, data, column.value)}
                     contentEditable
                     onClick={() => onClickCellItem(indexCell)}

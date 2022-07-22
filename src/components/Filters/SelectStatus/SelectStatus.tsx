@@ -1,5 +1,5 @@
 import React, {
-  useContext, useEffect, useState, useRef,
+  useContext, useState,
 } from 'react';
 import './SelectStatus.scss';
 import arrow from '../../../assets/svgs/arrow.svg';

@@ -1,11 +1,13 @@
 import React, {
-  useContext, useEffect, useMemo, useState,
+  useContext, useEffect, useMemo, useRef, useState,
 } from 'react';
 import './Grid.scss';
 import { GridRow } from '../GridRow/GridRow';
+// @ts-ignore
 import sortIcon from '../../../assets/svgs/sort.svg';
+// @ts-ignore
 import confirmation from '../../../assets/svgs/checkMark.svg';
-import { Search } from '../../Filters/Search/Search';
+import { Search } from '../../Search/Search';
 import { SelectStatus } from '../../Filters/SelectStatus/SelectStatus';
 import { SelectDevelopers } from '../../Filters/SelectDevelopers/SelectDevelopers';
 import { GridContext } from '../../../context/gridContext';
@@ -15,6 +17,7 @@ import {
 import { Pagination } from '../../PaginationRoot/Pagination/Pagination';
 import { UsePagination } from '../../../hooks/usePagination';
 import { ThemeContext } from '../../../context/themeContext';
+import { useDropdown } from '../../../hooks/useDropdown';
 
 interface Props{
   dataBase: RootObject
@@ -30,6 +33,7 @@ function Grid({
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [isSorted, setIsSorted] = useState<boolean>(false);
+  const theme = useContext(ThemeContext);
 
   const {
     paginationRange,
@@ -104,7 +108,21 @@ function Grid({
   const categoriesValues = selectCategories.map((category) => category.value);
   const categoriesLabels = selectCategories.map((category) => category.label);
 
-  const theme = useContext(ThemeContext);
+  const [isContentEdit, setIsContentEdit] = useState<boolean>(false);
+  const refTextArea = useRef<HTMLDivElement>(null);
+
+  // const closeEdit = (e: React.MouseEvent<HTMLElement>) => {
+  //   console.log('2');
+  //   if (refTextArea.current && isContentEdit && !refTextArea.current.contains(e.target as HTMLTextAreaElement)) {
+  //     setIsContentEdit(false);
+  //   }
+  // };
+
+  const {
+    ref,
+    isDropdownOpen,
+    setIsDropdownOpen,
+  } = useDropdown();
 
   const provider = useMemo(() => ({
     data,
@@ -123,11 +141,8 @@ function Grid({
   return (
     <GridContext.Provider value={provider}>
       <main
-        className="grid"
-        style={{
-          background: theme.mainBackground,
-          paddingTop: '40px',
-        }}
+        className="grid-wrapper"
+        style={{ background: theme.mainBackground }}
       >
         <SelectDevelopers />
         <SelectStatus />
@@ -149,8 +164,12 @@ function Grid({
               }}
             />
           </div>
-          {columns.map((column) => (
-            <div className="grid-header__cell" key={Math.random()} onClick={() => onSort(column.value)}>
+          {columns.map((column, index) => (
+            <div
+              className="grid-header__cell"
+              key={Math.random()}
+              onClick={() => onSort(column.value)}
+            >
               <div>{column.label}</div>
               <div className="img-wrapper">
                 <img
@@ -170,6 +189,9 @@ function Grid({
             <GridRow
               key={item.id}
               data={item}
+              setIsContentEdit={setIsContentEdit}
+              isContentEdit={isContentEdit}
+              refTextArea={refTextArea}
             />
           ))}
         </div>

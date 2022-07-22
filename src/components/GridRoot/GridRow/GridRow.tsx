@@ -1,11 +1,12 @@
 import React, {
-  useContext, useRef, useState,
+  useContext, useEffect, useRef, useState,
 } from 'react';
 import './GridRow.scss';
 import { useDataContext } from '../../../context/gridContext';
 import { ItemRow } from '../../App/App';
 import '../../../assets/styles/global.scss';
 import { ThemeContext } from '../../../context/themeContext';
+import { useDropdown } from '../../../hooks/useDropdown';
 
 interface Props{
   data: ItemRow
@@ -21,7 +22,13 @@ export function GridRow({ data }: Props) {
   const [isContentEdit, setIsContentEdit] = useState<boolean>(false);
 
   const [curIndexCell, setCurIndexCell] = useState<number>(0);
-  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+  // const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+
+  const {
+    ref,
+    isDropdownOpen,
+    setIsDropdownOpen,
+  } = useDropdown();
 
   const onClickCellItem = (indexCell: number) => {
     setIsContentEdit(true);
@@ -41,13 +48,7 @@ export function GridRow({ data }: Props) {
     setCurIndexCell(index);
   };
 
-  const closeDropdown = (e: React.MouseEvent<HTMLElement>) => {
-    if (refSpanElement.current && isDropdownOpen && !refSpanElement.current.contains(e.target as HTMLDivElement)) {
-      setIsDropdownOpen(false);
-    }
-  };
-
-  const closeEdit = (e: React.MouseEvent<HTMLElement>) => {
+  const closeEdit = (e: React.MouseEvent<HTMLElement>, indexCell: number) => {
     if (refTextArea.current && isContentEdit && !refTextArea.current.contains(e.target as HTMLTextAreaElement)) {
       setIsContentEdit(false);
     }
@@ -56,7 +57,6 @@ export function GridRow({ data }: Props) {
   return (
     <div
       className="grid-row"
-      onClick={(e) => closeDropdown(e)}
       style={{
         background: selectedItems.includes(data.id) ? 'rgba(143, 127, 255, 0.25)' : theme.backgroundRowsOdd,
         color: theme.mainColor,
@@ -84,7 +84,7 @@ export function GridRow({ data }: Props) {
           <div
             className="grid-row__cell"
             key={Math.random()}
-            onClick={closeEdit}
+            onClick={(e) => closeEdit(e, indexCell)}
             style={{
               display: 'flex',
               alignItems: typeof itemCell === 'number' ? 'flex-end' : itemCell?.includes('%') ? 'center' : 'flex-start',
@@ -104,9 +104,9 @@ export function GridRow({ data }: Props) {
                   </div>
                 ) : isDropdownOpen && curIndexCell === indexCell ? (
                   <>
-                    <span onClick={closeEdit}>{itemCell[0]}</span>
+                    <span onClick={(e) => closeEdit(e, indexCell)}>{itemCell[0]}</span>
                     <span
-                      ref={refSpanElement}
+                      ref={ref}
                       className="grid-row__cell_hide"
                       onClick={() => onClickHideContent(indexCell, false)}
                     >

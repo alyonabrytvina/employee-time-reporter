@@ -20,6 +20,11 @@ export function SelectDevelopers() {
   } = useDataContext();
 
   const theme = useContext(ThemeContext);
+  const [categories, setCategories] = useState<string[]>([]);
+  const [dev, setDev] = useState<Record<string, string[]>>({});
+
+  const [initialCategoriesLength, setInitialCategoriesLength] = useState<number>(0);
+  const [optionsNames, setOptionsNames] = useState<string[]>([]);
 
   const {
     ref,
@@ -27,11 +32,15 @@ export function SelectDevelopers() {
     setIsDropdownOpen,
   } = useDropdown();
 
-  const [categories, setCategories] = useState<string[]>(categoriesValues);
-  const [dev, setDev] = useState<Record<string, string[]>>(developers);
+  useEffect(() => {
+    setDev(developers);
+  }, [developers]);
 
-  const [initialCategoriesLength, setInitialCategoriesLength] = useState<number>(0);
-  const [optionsNames, setOptionsNames] = useState<string[]>(categoriesLabels);
+  useEffect(() => {
+    if (optionsNames && optionsNames.length === 0) {
+      setOptionsNames(categoriesLabels);
+    }
+  }, [categoriesLabels, optionsNames]);
 
   const onClickOpen = () => setIsDropdownOpen(!isDropdownOpen);
 
@@ -50,13 +59,25 @@ export function SelectDevelopers() {
   };
 
   useEffect(() => {
-    const values = Object.values(dev).reduce((total, currentValue) => (total).concat(currentValue), []);
-    onChangeSelectDev(values);
-  }, [categories, dev]);
+    // if (dev) {
+    // console.log('rrrr', dev);
+    const developers = Object.values(dev)?.reduce((total, currentValue) => (total).concat(currentValue), []);
+    // console.log(developers, 'developers');
+    onChangeSelectDev(developers);
+    // }
+  }, [dev]);
 
   useEffect(() => {
-    setInitialCategoriesLength(categoriesValues.length);
-  }, []);
+    if (categoriesValues) {
+      setInitialCategoriesLength(categoriesValues.length);
+    }
+
+    if (categories.length === 0) {
+      setCategories(categoriesValues);
+      setDev(developers);
+      setOptionsNames(categoriesLabels);
+    }
+  }, [categoriesValues, categories]);
 
   const onClickOption = (key: string) => {
     if (categories.includes(key)) {
@@ -75,16 +96,16 @@ export function SelectDevelopers() {
     } else {
       setCategories((prevState) => [...prevState, key]);
 
+      setDev((prevState) => ({
+        ...prevState,
+        [key]: developers[key as keyof Developers],
+      }));
+
       selectCategories.filter((category) => {
         if (category.value === key) {
           return setOptionsNames((prevState) => [...prevState, category.label]);
         }
       });
-
-      setDev((prevState) => ({
-        ...prevState,
-        [key]: developers[key as keyof Developers],
-      }));
     }
   };
 
@@ -102,7 +123,7 @@ export function SelectDevelopers() {
           border: isDropdownOpen ? '1px solid #8F7FFF' : theme.border,
         }}
       >
-        {categories?.length === initialCategoriesLength ? 'All people' : [...optionsNames].join(', ')}
+        {categories?.length === initialCategoriesLength ? 'All people' : optionsNames && [...optionsNames].join(', ')}
       </div>
       <div className="select-dev__arrow" onClick={onClickOpen}>
         <img
@@ -134,7 +155,7 @@ export function SelectDevelopers() {
                         className="checkbox"
                         type="checkbox"
                         onChange={() => onClickOption(key)}
-                        checked={!!dev[key as keyof Developers].length}
+                        checked={!!dev[key as keyof Developers]?.length}
                       />
                     </label>
                     <span>

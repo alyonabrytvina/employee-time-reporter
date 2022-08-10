@@ -3,17 +3,18 @@ import React, {
 } from 'react';
 import './GridRow.scss';
 import { useDataContext } from '../../../context/gridContext';
-import { ItemRow } from '../../App/App';
+import { Column, ItemRow } from '../../App/App';
 import '../../../assets/styles/global.scss';
 import { ThemeContext } from '../../../context/themeContext';
 import { useDropdown } from '../../../hooks/useDropdown';
 
 interface Props{
   data: ItemRow
+  columns: Column[]
 }
 
-export function GridRow({ data }: Props) {
-  const { onChangeCellContent, columns } = useDataContext();
+export function GridRow({ data, columns }: Props) {
+  const { onChangeCellContent } = useDataContext();
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
   const [curIndexCell, setCurIndexCell] = useState<number>(0);
 

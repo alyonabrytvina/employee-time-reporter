@@ -1,9 +1,7 @@
 import React, {
-  lazy, useEffect, useState, Suspense,
+  lazy, useState, Suspense,
 } from 'react';
 import { Header } from '../Header/Header';
-import db from '../../api/fetchData.json';
-import { services } from '../../api/services';
 import './App.scss';
 import { ThemeContext, themes } from '../../context/themeContext';
 
@@ -21,12 +19,12 @@ export interface ItemRow{
     id: number
 }
 
-export interface Columns{
+export interface Column{
     value: string
     label: string
 }
 
-export interface SelectCategories{
+export interface SelectCategory{
     value: string
     label: string
 }
@@ -38,34 +36,26 @@ export interface PaginationSelectI{
 
 export interface RootObject {
     data: ItemRow[]
-    columns: Columns[]
+    columns: Column[]
     status: string[]
-    selectCategories: SelectCategories[]
+    selectCategories: SelectCategory[]
     developers: Record<string, string[]>
     paginationSelect: PaginationSelectI[]
 }
 
 function App() {
-  const [dataBase, setDataBase] = useState<RootObject>(null!);
   const [isModeDark, setIsModeDark] = useState<boolean>(true);
-
   const changeMode = () => setIsModeDark(!isModeDark);
 
-  useEffect(() => {
-    services('db').then((result) => {
-      setDataBase(result.db);
-    });
-  }, []);
-
-  return dataBase && (
-  <ThemeContext.Provider value={isModeDark ? themes.dark : themes.light}>
-    <div className="wrapper">
-      <Header changeMode={changeMode} isModeDark={isModeDark} />
-      <Suspense fallback={<h1>Loading</h1>}>
-        <Grid dataBase={dataBase} />
-      </Suspense>
-    </div>
-  </ThemeContext.Provider>
+  return (
+    <ThemeContext.Provider value={isModeDark ? themes.dark : themes.light}>
+      <div className="wrapper">
+        <Header changeMode={changeMode} isModeDark={isModeDark} />
+        <Suspense fallback={<h1>Loading</h1>}>
+          <Grid />
+        </Suspense>
+      </div>
+    </ThemeContext.Provider>
   );
 }
 

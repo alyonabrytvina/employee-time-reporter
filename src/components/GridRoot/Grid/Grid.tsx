@@ -10,22 +10,47 @@ import { SelectStatus } from '../../Filters/SelectStatus/SelectStatus';
 import { SelectDevelopers } from '../../Filters/SelectDevelopers/SelectDevelopers';
 import { GridContext } from '../../../context/gridContext';
 import {
-  ItemRow, RootObject,
+  Column,
+  ItemRow, SelectCategory,
 } from '../../App/App';
 import { Pagination } from '../../PaginationRoot/Pagination/Pagination';
 import { UsePagination } from '../../../hooks/usePagination';
 import { ThemeContext } from '../../../context/themeContext';
+import { services } from '../../../api/services';
 
-interface Props{
-  dataBase: RootObject
-}
+function Grid() {
+  const [data, setData] = useState([]);
+  const [columns, setColumns] = useState<[]>([]);
+  const [status, setStatus] = useState<string[]>([]);
+  const [developers, setDevelopers] = useState<Record<string, string[]>>({});
+  const [paginationSelect, setPaginationSelect] = useState<[]>([]);
+  const [selectCategories, setSelectCategories] = useState<[]>([]);
 
-function Grid({
-  dataBase,
-}: Props) {
-  const {
-    data, columns, status, developers, paginationSelect, selectCategories,
-  } = dataBase;
+  useEffect(() => {
+    services('data').then((result) => {
+      setData(result);
+    });
+
+    services('columns').then((result) => {
+      setColumns(result);
+    });
+
+    services('status').then((result) => {
+      setStatus(result);
+    });
+
+    services('developers').then((result) => {
+      setDevelopers(result);
+    });
+
+    services('paginationSelect').then((result) => {
+      setPaginationSelect(result);
+    });
+
+    services('selectCategories').then((result) => {
+      setSelectCategories(result);
+    });
+  }, []);
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -86,8 +111,12 @@ function Grid({
   };
 
   const onChangeSelectDev = (developers: string[]) => {
+    const sortedData = Object.values(paginationRange);
     const filteredData = sortedData.filter((row: ItemRow) => row.developers.some((developer) => developers.indexOf(developer) !== -1));
-    setSortedData(filteredData);
+
+    if (filteredData.length) {
+      setSortedData(filteredData);
+    }
   };
 
   const onChangeCellContent = (eventValue: string, itemRow: Record<string, any>, key: string) => {
@@ -98,12 +127,11 @@ function Grid({
 
       return itemRow[key];
     }
-
     itemRow[key] = eventValue.toString();
   };
 
-  const categoriesValues = selectCategories.map((category) => category.value);
-  const categoriesLabels = selectCategories.map((category) => category.label);
+  const categoriesValues = selectCategories.map((category: SelectCategory) => category.value);
+  const categoriesLabels = selectCategories.map((category: SelectCategory) => category.label);
 
   const provider = useMemo(() => ({
     data,
@@ -117,7 +145,11 @@ function Grid({
     selectCategories,
     categoriesValues,
     categoriesLabels,
-  }), []);
+  }), [
+    data, columns, status,
+    selectCategories, categoriesValues,
+    categoriesLabels,
+  ]);
 
   return (
     <GridContext.Provider value={provider}>
@@ -145,7 +177,7 @@ function Grid({
               }}
             />
           </div>
-          {columns.map((column, index) => (
+          {columns.map((column: Column) => (
             <div
               className="grid-header__cell"
               key={Math.random()}
@@ -170,6 +202,7 @@ function Grid({
             <GridRow
               key={item.id}
               data={item}
+              columns={columns}
             />
           ))}
         </div>

@@ -1,6 +1,6 @@
-import { useEffect, useMemo } from 'react';
-import db from '../api/fetchData.json';
+import { useEffect, useMemo, useState } from 'react';
 import { ItemRow } from '../components/App/App';
+import { services } from '../api/services';
 
 interface Pagination{
   rowsPerPage: number,
@@ -13,7 +13,14 @@ export const UsePagination = ({
   currentPage,
   setCurrentPage,
 }: Pagination) => {
-  const { data } = db.db;
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    services('data').then((response) => {
+      setData(response);
+    });
+  }, []);
+
   const totalRowsCount = data.length;
   const totalPageCount = Math.ceil(totalRowsCount / rowsPerPage);
 
@@ -32,7 +39,7 @@ export const UsePagination = ({
     const end:number = start + rowsPerPage;
 
     return (data as ItemRow[]).slice(start, end);
-  }, [totalRowsCount, rowsPerPage, currentPage]);
+  }, [totalRowsCount, rowsPerPage, currentPage, data]);
 
   return {
     paginationRange,

@@ -1,18 +1,17 @@
 import React, { useContext } from 'react';
 import {
-  Columns, ItemRow, SelectCategories,
+  Column, ItemRow, SelectCategory,
 } from '../components/App/App';
 
 export interface ContextProps {
-    columns: Columns[]
+    columns: Column[]
     onChangeCellContent: (eventValue:string, itemRow: ItemRow, key: string) => void,
     onChangeSelectDev: (subDevCategory: string[]) => void,
     status: string[]
     developers: Record<string, string[]>
     onChangeSelect: (option: string) => void,
     onClickSearch: (value: string) => void,
-
-    selectCategories:SelectCategories[],
+    selectCategories:SelectCategory[],
     categoriesLabels: string[],
     categoriesValues: string[],
     data: ItemRow[]

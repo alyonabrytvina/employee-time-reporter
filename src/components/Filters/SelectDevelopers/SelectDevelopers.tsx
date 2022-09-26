@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import arrow from '../../../assets/svgs/arrow.svg';
 import dropdown from '../../../assets/svgs/dropdown.svg';
 import './SelectDevelopers.scss';
+
 import { useDataContext } from '../../../context/gridContext';
 import { ThemeContext } from '../../../context/themeContext';
 import { useDropdown } from '../../../hooks/useDropdown';
@@ -59,12 +60,8 @@ export function SelectDevelopers() {
   };
 
   useEffect(() => {
-    // if (dev) {
-    // console.log('rrrr', dev);
     const developers = Object.values(dev)?.reduce((total, currentValue) => (total).concat(currentValue), []);
-    // console.log(developers, 'developers');
     onChangeSelectDev(developers);
-    // }
   }, [dev]);
 
   useEffect(() => {

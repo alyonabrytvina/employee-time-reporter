@@ -3,59 +3,50 @@ import React, {
 } from 'react';
 import './Grid.scss';
 import { GridRow } from '../GridRow/GridRow';
+import { Search } from '../../Search/Search';
+
 import sortIcon from '../../../assets/svgs/sort.svg';
 import confirmation from '../../../assets/svgs/checkMark.svg';
-import { Search } from '../../Search/Search';
 import { SelectStatus } from '../../Filters/SelectStatus/SelectStatus';
 import { SelectDevelopers } from '../../Filters/SelectDevelopers/SelectDevelopers';
+
 import { GridContext } from '../../../context/gridContext';
 import {
-  Column,
-  ItemRow, SelectCategory,
+  Column, ItemRow,
+  PaginationSelectI, SelectCategory,
 } from '../../App/App';
 import { Pagination } from '../../PaginationRoot/Pagination/Pagination';
 import { UsePagination } from '../../../hooks/usePagination';
+
 import { ThemeContext } from '../../../context/themeContext';
-import { services } from '../../../api/services';
 
-function Grid() {
-  const [data, setData] = useState([]);
-  const [columns, setColumns] = useState<[]>([]);
-  const [status, setStatus] = useState<string[]>([]);
-  const [developers, setDevelopers] = useState<Record<string, string[]>>({});
-  const [paginationSelect, setPaginationSelect] = useState<[]>([]);
-  const [selectCategories, setSelectCategories] = useState<[]>([]);
+export interface RootObject {
+  columns: Column[]
+  data: ItemRow[]
+  developers: Record<string, string[]>
+  paginationSelect: PaginationSelectI[]
+  selectCategories: SelectCategory[]
+  status: string[]
+}
 
-  useEffect(() => {
-    services('data').then((result) => {
-      setData(result);
-    });
+export interface RootObjectParent {
+  dataBase: {}|RootObject
+}
 
-    services('columns').then((result) => {
-      setColumns(result);
-    });
-
-    services('status').then((result) => {
-      setStatus(result);
-    });
-
-    services('developers').then((result) => {
-      setDevelopers(result);
-    });
-
-    services('paginationSelect').then((result) => {
-      setPaginationSelect(result);
-    });
-
-    services('selectCategories').then((result) => {
-      setSelectCategories(result);
-    });
-  }, []);
-
+function Grid({ dataBase }: RootObjectParent) {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [isSorted, setIsSorted] = useState<boolean>(false);
   const theme = useContext(ThemeContext);
+
+  const {
+    status,
+    developers,
+    paginationSelect,
+    selectCategories,
+    columns,
+    data,
+  } = dataBase as RootObject;
 
   const {
     paginationRange,
@@ -177,7 +168,7 @@ function Grid() {
               }}
             />
           </div>
-          {columns.map((column: Column) => (
+          {columns.map((column) => (
             <div
               className="grid-header__cell"
               key={Math.random()}

@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import arrowPrevActive from '../../../assets/svgs/arrowRightActive.svg';
 import arrowNextActive from '../../../assets/svgs/arrowLeftActive.svg';
 import '../Pagination/Pagination.scss';
+
 import { ThemeContext } from '../../../context/themeContext';
 import { useDataContext } from '../../../context/gridContext';
 

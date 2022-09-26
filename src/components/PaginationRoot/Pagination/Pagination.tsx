@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import './Pagination.scss';
 import { useDataContext } from '../../../context/gridContext';
 import { ThemeContext } from '../../../context/themeContext';
+
 import { PaginationSwitcher } from '../PaginationSwitcher/PaginationSwitcher';
 import { PaginationRange } from '../PaginationRowsPerPage/PaginationRowsPerPage';
 import { PaginationDropdown } from '../PaginationDropdown/PaginationSelect';

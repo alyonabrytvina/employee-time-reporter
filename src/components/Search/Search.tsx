@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import './Search.scss';
-// @ts-ignore
 import searchIcon from '../../assets/svgs/search.svg';
 import { useDataContext } from '../../context/gridContext';
+
 import { ThemeContext } from '../../context/themeContext';
 
 export function Search() {
